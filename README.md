@@ -31,7 +31,7 @@ If you are the trademark owner and believe this project still infringes on your 
 - Optimized layout structure
 
 ## 🚀 Live Demo
-👉 https://YOUR_USERNAME.github.io/Ecommerce-Landing-Page-UI/
+👉 https://musaibhasan.github.io/E-commerce-Landing-Demo/
 
 ## 📚 What I Learned
 - Building scalable UI layouts
