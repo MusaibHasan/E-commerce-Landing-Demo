@@ -3,7 +3,7 @@
 A modern, responsive **ecommerce landing page UI** built as a frontend practice project using HTML, CSS, JavaScript, and Bootstrap.
 
 ## 📌 Project Purpose
-This project was created **strictly for learning and portfolio purposes** to practice:
+This project is created **strictly for learning and portfolio purposes** to practice:
 - Responsive layouts
 - Navigation bars and dropdowns
 - Light/Dark mode theming
