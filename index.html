@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        // Execute immediately to check theme preference
+        (function () {
+            const theme = localStorage.getItem("theme");
+            if (theme === "dark") {
+                // Apply to <html> immediately to handle background early
+                document.documentElement.classList.add("dark-mode");
+
+                // Apply to <body> as soon as it exists to avoid disrupting your CSS selectors
+                const observer = new MutationObserver(() => {
+                    if (document.body) {
+                        document.body.classList.add("dark-mode");
+                        observer.disconnect();
+                    }
+                });
+                observer.observe(document.documentElement, { childList: true });
+            }
+        })();
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Landing Demo — Sample Store
+    </title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/CSS/media.css">
+    <!-- Boxicons CSS -->
+    <link href='https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css' rel='stylesheet'>
+    <link href='https://cdn.boxicons.com/3.0.8/fonts/filled/boxicons-filled.min.css' rel='stylesheet'>
+    <link href='https://cdn.boxicons.com/3.0.8/fonts/brands/boxicons-brands.min.css' rel='stylesheet'>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-DQvkBjpPgn7RC31MCQoOeC9TI2kdqa4+BSgNMNj8v77fdC77Kj5zpWFTJaaAoMbC" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="/img/logo_lite-cbb357.png">
+    <style>
+        @media (min-width: 992px) {
+            .nav-item a {
+                color: white !important;
+            }
+
+            .bx-chevron-down {
+                color: white !important;
+            }
+
+            .nav-item:hover .nav-link {
+                background: rgba(255, 255, 255, 0.15);
+            }
+
+            /* Rotate arrow */
+            .nav-item:hover .bx-chevron-down {
+                transform: rotate(180deg);
+            }
+
+            body.dark-mode .navbar-nav,
+            body.dark-mode .d-flex-column {
+                background-color: #212830 !important;
+            }
+
+            .offcanvas .nav-item.open .nav-link {
+                background: rgba(255, 255, 255, 0.08);
+                border-radius: 10px;
+            }
+
+            .form-control {
+                width: 30vw !important;
+                margin-top: 0em !important;
+                margin-bottom: 0em !important;
+            }
+
+            body.dark-mode .form-control {
+                background-color: #212830 !important;
+                color: #e9ecef !important;
+            }
+
+            #searchBtn:hover {
+                background-color: rgb(2, 104, 186) !important;
+            }
+
+            /* --- HOVER EFFECT: Glow --- */
+            body.dark-mode .theme-btn:hover .bx-sun {
+                color: #ffffff !important;
+                /* Bright White Sun */
+            }
+
+            body:not(.dark-mode) .theme-btn:hover .bx-moon {
+                color: #ffe500 !important;
+                /* Moonlight Yellow */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar with Toggler -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container-fluid column-gap-4">
+            <div class="logo d-flex align-items-center ms-lg-3">
+                <div class="F9+fd2 d-flex flex-column justify-content-center" id="logo"><a
+                        href="https://www.flipkart.com/"><img src="/img/logo.png" style="width: 80px;" alt="Demo Shop"
+                            title="Demo Shop" class="TVd0Ah"></a>
+                    <a class="MwbhDR fst-italic" href="https://www.flipkart.com/plus">Explore <span
+                            class="s4NJ5L">Plus</span><img style="width: 10px; margin-bottom: 3px;"
+                            src="/img/plus_aef861.png"></a>
+                </div>
+                <button class="navbar-toggler border border-0 me-3 order-first" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+            <!-- Offcanvas Menu -->
+            <div class="offcanvas offcanvas-start w-75" tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h6 class="offcanvas-title" id="offcanvasNavbarLabel">Welcome!</h6>
+
+                    <div class="d-flex align-items-center ms-auto gap-2">
+                        <!-- Dark/Light Mode Toggle -->
+                        <button id="themeToggleBtnMobile" class="theme-btn btn border-0 d-lg-none ms-2" type="button"
+                            aria-label="Toggle theme">
+                            <i class='bx bx-sun'></i>
+                            <i class='bx bx-moon'></i>
+                        </button>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 column-gap-3 pe-lg-5">
+                        <li class="nav-item d-inline-block position-relative">
+                            <a class="nav-link d-flex align-items-center justify-content-between position-relative dropdown-toggle-mobile"
+                                href="" role="button"><span class="d-flex align-items-center"><i
+                                        class='bx bx-info-circle me-2'></i> About</span>
+                                <i class='bx bx-chevron-down'></i>
+                            </a>
+                            <div class="nav-dropdown">
+                                <div class="dropdown-inner">
+                                    <a href="https://corporate.flipkart.net/corporate-home">About Us</a>
+                                    <a href="https://www.flipkart.com/helpcentre?otracker=footer_navlinks">Contact
+                                        Us</a>
+                                    <a href="https://stories.flipkart.com/?otracker=footer_navlinks">Our Story</a>
+                                    <a
+                                        href="https://flipkart.turbohire.co/careerpage/4d757ba0-3d57-448a-b82c-238ed87ac90f">Careers</a>
+                                    <a href="https://www.flipkart.com/corporate-information">Corporate Information</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item d-inline-block position-relative">
+                            <a class="nav-link d-flex align-items-center justify-content-between position-relative dropdown-toggle-mobile"
+                                href="" role="button">
+                                <span class="d-flex align-items-center"><i class='bx bx-help-circle me-2'></i>
+                                    Help</span>
+                                <i class='bx bx-chevron-down'></i>
+                            </a>
+                            <div class="nav-dropdown">
+                                <div class="dropdown-inner">
+                                    <a href="https://www.flipkart.com/helpcentre?otracker=footer_navlinks">Customer
+                                        Care</a>
+                                    <a
+                                        href="https://www.flipkart.com/helpcentre?catalog=5e5cf25d5100003b003313c8&view=CATALOG">Returns
+                                        & Pickup</a>
+                                    <a
+                                        href="https://www.flipkart.com/helpcentre?catalog=55c9bc6bb000003f002c16ff&view=CATALOG">Delivery</a>
+                                    <a href="https://www.flipkart.com/account/orders?link=home_orders">Track
+                                        Orders</a>
+                                    <a
+                                        href="https://www.flipkart.com/helpcentre?catalog=55c9c8e2b0000023002c1702&view=CATALOG">FAQ</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item d-inline-block position-relative">
+                            <a class="nav-link d-flex align-items-center justify-content-between position-relative dropdown-toggle-mobile"
+                                href="" role="button"><span class="d-flex align-items-center"><i
+                                        class='bx bx-grid me-2'></i> More</span>
+                                <i class='bx bx-chevron-down'></i>
+                            </a>
+                            <div class="nav-dropdown">
+                                <div class="dropdown-inner">
+                                    <a href="https://www.flipkart.com/viewcart?marketplace=FLIPKART">My Cart</a>
+                                    <a href="https://www.flipkart.com/communication-preferences/push?t=all">Notification
+                                        Preferences</a>
+                                    <a href="https://seller.flipkart.com/sell-online">Sell on Flipkart</a>
+                                    <a
+                                        href="https://advertising.flipkart.com/login?returl=/?otracker=ch_vn_advertise_header">Advertise</a>
+                                    <a href="https://www.flipkart.com/mobile-apps?otracker=ch_vn_mobile_apps">Download
+                                        App</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <form class="d-flex-column d-lg-flex column-gap-1" role="search">
+                        <input class="form-control me-2 my-3 mt-4 text-truncate" type="search"
+                            placeholder="Search for Products, Brands and More" aria-label="Search">
+                        <button id="searchBtn" class="btn btn-outline-primary text-bg-primary border border-white px-3"
+                            type="submit">Search</button>
+                        <button id="themeToggleBtnDesktop" class="theme-btn btn border-0 d-none d-lg-block ms-2"
+                            type="button" aria-label="Toggle theme">
+                            <i class='bx bx-sun'></i>
+                            <i class='bx bx-moon'></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container-fluid pt-3 pb-5">
+            <div id="carouselExample1" class="carousel carousel-dark slide px-1 d-md-none d-lg-none"
+                data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="3000">
+                        <a class="_3n8fna1co _3n8fna10j _3n8fnaod _3n8fna1 _3n8fnac7 _1i2djtb9 _1i2djtl6 _1i2djtix _1i2djte9 _1i2djtfr"
+                            href="https://www.flipkart.com/feb-2025-big-bachat-days-at-store?ctx=eyJjYXJkQ29udGV4dCI6eyJhdHRyaWJ1dGVzIjp7InNvdXJjZUNvbnRlbnRUeXBlIjp7InNpbmdsZVZhbHVlQXR0cmlidXRlIjp7ImtleSI6InNvdXJjZUNvbnRlbnRUeXBlIiwiaW5mZXJlbmNlVHlwZSI6IlNDVCIsInZhbHVlIjoiSUFEIiwidmFsdWVUeXBlIjoiU0lOR0xFX1ZBTFVFRCJ9fX19fQ%3D%3D&nnc=UWUR1DDYSQ3S_IAD&pageUID=1743628906118"
+                            style="align-items: stretch; border-width: 0px; box-sizing: border-box; display: flex; flex-basis: auto; flex-direction: column; flex-shrink: 0; min-height: 0px; min-width: 0px; position: relative; z-index: 0; border-radius: 16px; overflow: hidden; clip-path: path(&quot;M 702.4 0 c 15.0849 0 22.6274 0 27.3137 4.6863 a 16 16 0 0 1 0 0 c 4.6863 4.6863 4.6863 12.2288 4.6863 27.3137 L 734.4 326.238 c 0 15.0849 0 22.6274 -4.6863 27.3137 a 16 16 0 0 1 0 0 c -4.6863 4.6863 -12.2288 4.6863 -27.3137 4.6863 L 32 358.238 c -15.0849 0 -22.6274 0 -27.3137 -4.6863 a 16 16 0 0 1 0 0 c -4.6863 -4.6863 -4.6863 -12.2288 -4.6863 -27.3137 L 0 32 c 0 -15.0849 0 -22.6274 4.6863 -27.3137 a 16 16 0 0 1 0 0 c 4.6863 -4.6863 12.2288 -4.6863 27.3137 -4.6863 Z&quot;);">
+                            <div class="zlQd20 "
+                                style="--aspect-ratio: 41/20; --aspect-ratio-m: 41/20; --aspect-ratio-l: 41/20; flex: 1 1 0%;">
+                                <picture>
+                                    <source
+                                        srcset="https://rukminim2.flixcart.com/fk-p-flap/1580/770/image/c7e5a491a370b764.jpg?q=80 1x, https://rukminim2.flixcart.com/fk-p-flap/3160/1540/image/c7e5a491a370b764.jpg?q=60 2x, "
+                                        media="(min-width: 1192px)">
+                                    <source
+                                        srcset="https://rukminim2.flixcart.com/fk-p-flap/990/480/image/c7e5a491a370b764.jpg?q=80 1x, https://rukminim2.flixcart.com/fk-p-flap/1980/960/image/c7e5a491a370b764.jpg?q=60 2x, "
+                                        media="(min-width: 768px) and (max-width: 1191px)"><img loading="eager"
+                                        alt="Image"
+                                        srcset="https://rukminim2.flixcart.com/fk-p-flap/480/230/image/c7e5a491a370b764.jpg?q=80 1x, https://rukminim2.flixcart.com/fk-p-flap/960/460/image/c7e5a491a370b764.jpg?q=60 2x, "
+                                        src="https://rukminim2.flixcart.com/fk-p-flap/480/230/image/c7e5a491a370b764.jpg?q=90"
+                                        style="width: 100%; margin: auto; display: block; object-fit: cover; opacity: 1; aspect-ratio: 41 / 20;">
+                                </picture><img
+                                    src="https://rukminim2.flixcart.com/fk-p-flap/480/230/image/c7e5a491a370b764.jpg?q=20"
+                                    loading="eager" alt="Slide 1"
+                                    style="width: 100%; margin: auto; display: block; position: absolute; inset: 0px; padding: inherit; object-fit: cover; opacity: 0; aspect-ratio: 41 / 20;">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="3000">
+                        <a class="_3n8fna1co _3n8fna10j _3n8fnaod _3n8fna1 _3n8fnac7 _1i2djtb9 _1i2djtl6 _1i2djtix _1i2djte9 _1i2djtfr"
+                            href="https://www.flipkart.com/sports/cycling/cycles/adult-cycles/pr?sid=abc%2Culv%2Cixt%2Ci5v&p%5B%5D=facets.rating%255B%255D%3D3%25E2%2598%2585%2B%2526%2Babove&p%5B%5D=facets.discount_range_v1%255B%255D%3D40%2525%2Bor%2Bmore&ctx=eyJjYXJkQ29udGV4dCI6eyJhdHRyaWJ1dGVzIjp7InNvdXJjZUNvbnRlbnRUeXBlIjp7InNpbmdsZVZhbHVlQXR0cmlidXRlIjp7ImtleSI6InNvdXJjZUNvbnRlbnRUeXBlIiwiaW5mZXJlbmNlVHlwZSI6IlNDVCIsInZhbHVlIjoiSUFEIiwidmFsdWVUeXBlIjoiU0lOR0xFX1ZBTFVFRCJ9fX19fQ%3D%3D&nnc=54DBC07S5CD1_IAD&pageUID=1743632068294"
+                            style="align-items: stretch; border-width: 0px; box-sizing: border-box; display: flex; flex-basis: auto; flex-direction: column; flex-shrink: 0; min-height: 0px; min-width: 0px; position: relative; z-index: 0; border-radius: 16px; overflow: hidden; clip-path: path(&quot;M 702.4 0 c 15.0849 0 22.6274 0 27.3137 4.6863 a 16 16 0 0 1 0 0 c 4.6863 4.6863 4.6863 12.2288 4.6863 27.3137 L 734.4 326.238 c 0 15.0849 0 22.6274 -4.6863 27.3137 a 16 16 0 0 1 0 0 c -4.6863 4.6863 -12.2288 4.6863 -27.3137 4.6863 L 32 358.238 c -15.0849 0 -22.6274 0 -27.3137 -4.6863 a 16 16 0 0 1 0 0 c -4.6863 -4.6863 -4.6863 -12.2288 -4.6863 -27.3137 L 0 32 c 0 -15.0849 0 -22.6274 4.6863 -27.3137 a 16 16 0 0 1 0 0 c 4.6863 -4.6863 12.2288 -4.6863 27.3137 -4.6863 Z&quot;);">
+                            <div class="zlQd20 "
+                                style="--aspect-ratio: 41/20; --aspect-ratio-m: 41/20; --aspect-ratio-l: 41/20; flex: 1 1 0%;">
+                                <picture>
+                                    <source
+                                        srcset="https://rukminim2.flixcart.com/fk-p-flap/1580/770/image/ed41a40381351741.png?q=80 1x, https://rukminim2.flixcart.com/fk-p-flap/3160/1540/image/ed41a40381351741.png?q=60 2x, "
+                                        media="(min-width: 1192px)">
+                                    <source
+                                        srcset="https://rukminim2.flixcart.com/fk-p-flap/990/480/image/ed41a40381351741.png?q=80 1x, https://rukminim2.flixcart.com/fk-p-flap/1980/960/image/ed41a40381351741.png?q=60 2x, "
+                                        media="(min-width: 768px) and (max-width: 1191px)"><img loading="lazy"
+                                        alt="Image"
+                                        srcset="https://rukminim2.flixcart.com/fk-p-flap/480/230/image/ed41a40381351741.png?q=80 1x, https://rukminim2.flixcart.com/fk-p-flap/960/460/image/ed41a40381351741.png?q=60 2x, "
+                                        src="https://rukminim2.flixcart.com/fk-p-flap/480/230/image/ed41a40381351741.png?q=90"
+                                        style="width: 100%; margin: auto; display: block; object-fit: cover; opacity: 1; aspect-ratio: 41 / 20;">
+                                </picture><img
+                                    src="https://rukminim2.flixcart.com/fk-p-flap/480/230/image/ed41a40381351741.png?q=20"
+                                    loading="lazy" alt="Slide 2"
+                                    style="width: 100%; margin: auto; display: block; position: absolute; inset: 0px; padding: inherit; object-fit: cover; opacity: 0; aspect-ratio: 41 / 20;">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="3000">
+                        <a class="_3n8fna1co _3n8fna10j _3n8fnaod _3n8fna1 _3n8fnac7 _1i2djtb9 _1i2djtl6 _1i2djtix _1i2djte9 _1i2djtfr"
+                            href="https://www.flipkart.com/grocery-supermart-store?marketplace=GROCERY&param=3231232121876&ctx=eyJjYXJkQ29udGV4dCI6eyJhdHRyaWJ1dGVzIjp7InNvdXJjZUNvbnRlbnRUeXBlIjp7InNpbmdsZVZhbHVlQXR0cmlidXRlIjp7ImtleSI6InNvdXJjZUNvbnRlbnRUeXBlIiwiaW5mZXJlbmNlVHlwZSI6IlNDVCIsInZhbHVlIjoiSUFEIiwidmFsdWVUeXBlIjoiU0lOR0xFX1ZBTFVFRCJ9fX19fQ%3D%3D&nnc=MHXGC6M6CH0F_IAD&pageUID=1743625590896"
+                            style="align-items: stretch; border-width: 0px; box-sizing: border-box; display: flex; flex-basis: auto; flex-direction: column; flex-shrink: 0; min-height: 0px; min-width: 0px; position: relative; z-index: 0; border-radius: 16px; overflow: hidden; clip-path: path(&quot;M 699.2 0 c 15.0849 0 22.6274 0 27.3137 4.6863 a 16 16 0 0 1 0 0 c 4.6863 4.6863 4.6863 12.2288 4.6863 27.3137 L 731.2 324.675 c 0 15.0849 0 22.6274 -4.6863 27.3137 a 16 16 0 0 1 0 0 c -4.6863 4.6863 -12.2288 4.6863 -27.3137 4.6863 L 32 356.675 c -15.0849 0 -22.6274 0 -27.3137 -4.6863 a 16 16 0 0 1 0 0 c -4.6863 -4.6863 -4.6863 -12.2288 -4.6863 -27.3137 L 0 32 c 0 -15.0849 0 -22.6274 4.6863 -27.3137 a 16 16 0 0 1 0 0 c 4.6863 -4.6863 12.2288 -4.6863 27.3137 -4.6863 Z&quot;);">
+                            <div class="zlQd20 "
+                                style="--aspect-ratio: 41/20; --aspect-ratio-m: 41/20; --aspect-ratio-l: 41/20; flex: 1 1 0%;">
+                                <picture>
+                                    <source
+                                        srcset="https://rukminim2.flixcart.com/fk-p-flap/1580/770/image/c759322fa2cf0e25.jpg?q=80 1x, https://rukminim2.flixcart.com/fk-p-flap/3160/1540/image/c759322fa2cf0e25.jpg?q=60 2x, "
+                                        media="(min-width: 1192px)">
+                                    <source
+                                        srcset="https://rukminim2.flixcart.com/fk-p-flap/990/480/image/c759322fa2cf0e25.jpg?q=80 1x, https://rukminim2.flixcart.com/fk-p-flap/1980/960/image/c759322fa2cf0e25.jpg?q=60 2x, "
+                                        media="(min-width: 768px) and (max-width: 1191px)"><img loading="lazy"
+                                        alt="Image"
+                                        srcset="https://rukminim2.flixcart.com/fk-p-flap/480/230/image/c759322fa2cf0e25.jpg?q=80 1x, https://rukminim2.flixcart.com/fk-p-flap/960/460/image/c759322fa2cf0e25.jpg?q=60 2x, "
+                                        src="https://rukminim2.flixcart.com/fk-p-flap/480/230/image/c759322fa2cf0e25.jpg?q=90"
+                                        style="width: 100%; margin: auto; display: block; object-fit: cover; opacity: 1; aspect-ratio: 41 / 20;">
+                                </picture><img
+                                    src="https://rukminim2.flixcart.com/fk-p-flap/480/230/image/c759322fa2cf0e25.jpg?q=20"
+                                    loading="lazy" alt="Slide 3"
+                                    style="width: 100%; margin: auto; display: block; position: absolute; inset: 0px; padding: inherit; object-fit: cover; opacity: 0; aspect-ratio: 41 / 20;">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="carouselExample2" class="carousel carousel-dark slide d-none d-md-block d-lg-none"
+                data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExample2" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExample2" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExample2" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="3000">
+                        <a class="_3n8fna1co _3n8fna10j _3n8fnaod _3n8fna1 _3n8fnac7 _1i2djtb9 _1i2djtl6 _1i2djtix _1i2djte9 _1i2djtfr"
+                            href="https://www.flipkart.com/feb-2025-big-bachat-days-at-store?ctx=eyJjYXJkQ29udGV4dCI6eyJhdHRyaWJ1dGVzIjp7InNvdXJjZUNvbnRlbnRUeXBlIjp7InNpbmdsZVZhbHVlQXR0cmlidXRlIjp7ImtleSI6InNvdXJjZUNvbnRlbnRUeXBlIiwiaW5mZXJlbmNlVHlwZSI6IlNDVCIsInZhbHVlIjoiSUFEIiwidmFsdWVUeXBlIjoiU0lOR0xFX1ZBTFVFRCJ9fX19fQ%3D%3D&nnc=UWUR1DDYSQ3S_IAD&pageUID=1743627138238"
+                            style="align-items: stretch; border-width: 0px; box-sizing: border-box; display: flex; flex-basis: auto; flex-direction: column; flex-shrink: 0; min-height: 0px; min-width: 0px; position: relative; z-index: 0; border-radius: 16px; overflow: hidden; clip-path: path(&quot;M 888 0 c 15.0849 0 22.6274 0 27.3137 4.6863 a 16 16 0 0 1 0 0 c 4.6863 4.6863 4.6863 12.2288 4.6863 27.3137 L 920 416.775 c 0 15.0849 0 22.6274 -4.6863 27.3137 a 16 16 0 0 1 0 0 c -4.6863 4.6863 -12.2288 4.6863 -27.3137 4.6863 L 32 448.775 c -15.0849 0 -22.6274 0 -27.3137 -4.6863 a 16 16 0 0 1 0 0 c -4.6863 -4.6863 -4.6863 -12.2288 -4.6863 -27.3137 L 0 32 c 0 -15.0849 0 -22.6274 4.6863 -27.3137 a 16 16 0 0 1 0 0 c 4.6863 -4.6863 12.2288 -4.6863 27.3137 -4.6863 Z&quot;);">
+                            <div class="zlQd20 "
+                                style="--aspect-ratio: 41/20; --aspect-ratio-m: 41/20; --aspect-ratio-l: 41/20; flex: 1 1 0%;">
+                                <picture>
+                                    <source
+                                        srcset="https://rukminim2.flixcart.com/fk-p-flap/1620/790/image/c7e5a491a370b764.jpg?q=80 1x, https://rukminim2.flixcart.com/fk-p-flap/3240/1580/image/c7e5a491a370b764.jpg?q=60 2x, "
+                                        media="(min-width: 1192px)">
+                                    <source
+                                        srcset="https://rukminim2.flixcart.com/fk-p-flap/1010/490/image/c7e5a491a370b764.jpg?q=80 1x, https://rukminim2.flixcart.com/fk-p-flap/2020/980/image/c7e5a491a370b764.jpg?q=60 2x, "
+                                        media="(min-width: 768px) and (max-width: 1191px)"><img loading="eager"
+                                        alt="Image"
+                                        srcset="https://rukminim2.flixcart.com/fk-p-flap/480/230/image/c7e5a491a370b764.jpg?q=80 1x, https://rukminim2.flixcart.com/fk-p-flap/960/460/image/c7e5a491a370b764.jpg?q=60 2x, "
+                                        style="width: 100%; margin: auto; display: block; object-fit: cover; opacity: 1; aspect-ratio: 41 / 20;"
+                                        src="https://rukminim2.flixcart.com/fk-p-flap/1010/490/image/c7e5a491a370b764.jpg?q=90">
+                                </picture><img
+                                    src="https://rukminim2.flixcart.com/fk-p-flap/1010/490/image/c7e5a491a370b764.jpg?q=20"
+                                    loading="eager" alt="Slide 1"
+                                    style="width: 100%; margin: auto; display: block; position: absolute; inset: 0px; padding: inherit; object-fit: cover; opacity: 0; aspect-ratio: 41 / 20;">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="3000">
+                        <a class="_3n8fna1co _3n8fna10j _3n8fnaod _3n8fna1 _3n8fnac7 _1i2djtb9 _1i2djtl6 _1i2djtix _1i2djte9 _1i2djtfr"
+                            href="https://www.flipkart.com/j9e/abm/c54/~cs-4c9t6a0d2q/pr?sid=j9e%2Cabm%2Cc54&collection-tab-name=Top+50+Deals+on+ACs&pageCriteria=default&param=87512&ctx=eyJjYXJkQ29udGV4dCI6eyJhdHRyaWJ1dGVzIjp7InNvdXJjZUNvbnRlbnRUeXBlIjp7InNpbmdsZVZhbHVlQXR0cmlidXRlIjp7ImtleSI6InNvdXJjZUNvbnRlbnRUeXBlIiwiaW5mZXJlbmNlVHlwZSI6IlNDVCIsInZhbHVlIjoiSUFEIiwidmFsdWVUeXBlIjoiU0lOR0xFX1ZBTFVFRCJ9fX19fQ%3D%3D&nnc=G2IXKRW4IMTV_IAD&pageUID=1743628227752"
+                            style="align-items: stretch; border-width: 0px; box-sizing: border-box; display: flex; flex-basis: auto; flex-direction: column; flex-shrink: 0; min-height: 0px; min-width: 0px; position: relative; z-index: 0; border-radius: 16px; overflow: hidden; clip-path: path(&quot;M 888 0 c 15.0849 0 22.6274 0 27.3137 4.6863 a 16 16 0 0 1 0 0 c 4.6863 4.6863 4.6863 12.2288 4.6863 27.3137 L 920 416.775 c 0 15.0849 0 22.6274 -4.6863 27.3137 a 16 16 0 0 1 0 0 c -4.6863 4.6863 -12.2288 4.6863 -27.3137 4.6863 L 32 448.775 c -15.0849 0 -22.6274 0 -27.3137 -4.6863 a 16 16 0 0 1 0 0 c -4.6863 -4.6863 -4.6863 -12.2288 -4.6863 -27.3137 L 0 32 c 0 -15.0849 0 -22.6274 4.6863 -27.3137 a 16 16 0 0 1 0 0 c 4.6863 -4.6863 12.2288 -4.6863 27.3137 -4.6863 Z&quot;);">
+                            <div class="zlQd20 "
+                                style="--aspect-ratio: 41/20; --aspect-ratio-m: 41/20; --aspect-ratio-l: 41/20; flex: 1 1 0%;">
+                                <picture>
+                                    <source
+                                        srcset="https://rukminim2.flixcart.com/fk-p-flap/1620/790/image/2f651f6ebaee318f.jpg?q=80 1x, https://rukminim2.flixcart.com/fk-p-flap/3240/1580/image/2f651f6ebaee318f.jpg?q=60 2x, "
+                                        media="(min-width: 1192px)">
+                                    <source
+                                        srcset="https://rukminim2.flixcart.com/fk-p-flap/1010/490/image/2f651f6ebaee318f.jpg?q=80 1x, https://rukminim2.flixcart.com/fk-p-flap/2020/980/image/2f651f6ebaee318f.jpg?q=60 2x, "
+                                        media="(min-width: 768px) and (max-width: 1191px)"><img loading="lazy"
+                                        alt="Image"
+                                        srcset="https://rukminim2.flixcart.com/fk-p-flap/480/230/image/2f651f6ebaee318f.jpg?q=80 1x, https://rukminim2.flixcart.com/fk-p-flap/960/460/image/2f651f6ebaee318f.jpg?q=60 2x, "
+                                        style="width: 100%; margin: auto; display: block; object-fit: cover; opacity: 1; aspect-ratio: 41 / 20;"
+                                        src="https://rukminim2.flixcart.com/fk-p-flap/1010/490/image/2f651f6ebaee318f.jpg?q=90">
+                                </picture><img
+                                    src="https://rukminim2.flixcart.com/fk-p-flap/1010/490/image/2f651f6ebaee318f.jpg?q=20"
+                                    loading="lazy" alt="Slide 2"
+                                    style="width: 100%; margin: auto; display: block; position: absolute; inset: 0px; padding: inherit; object-fit: cover; opacity: 0; aspect-ratio: 41 / 20;">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="3000">
+                        <a class="_3n8fna1co _3n8fna10j _3n8fnaod _3n8fna1 _3n8fnac7 _1i2djtb9 _1i2djtl6 _1i2djtix _1i2djte9 _1i2djtfr"
+                            href="https://www.flipkart.com/6bo/b5g/~cs-d0tyj5ev71/pr?sid=6bo%2Cb5g&collection-tab-name=Chromebook_Mar_2025&pageCriteria=BlueAndMall&ctx=eyJjYXJkQ29udGV4dCI6eyJhdHRyaWJ1dGVzIjp7InNvdXJjZUNvbnRlbnRUeXBlIjp7InNpbmdsZVZhbHVlQXR0cmlidXRlIjp7ImtleSI6InNvdXJjZUNvbnRlbnRUeXBlIiwiaW5mZXJlbmNlVHlwZSI6IlNDVCIsInZhbHVlIjoiQUQiLCJ2YWx1ZVR5cGUiOiJTSU5HTEVfVkFMVUVEIn19fX19&nnc=QV8LNW82M66L_AD&pageUID=1743628325242"
+                            style="align-items: stretch; border-width: 0px; box-sizing: border-box; display: flex; flex-basis: auto; flex-direction: column; flex-shrink: 0; min-height: 0px; min-width: 0px; position: relative; z-index: 0; border-radius: 16px; overflow: hidden; clip-path: path(&quot;M 888 0 c 15.0849 0 22.6274 0 27.3137 4.6863 a 16 16 0 0 1 0 0 c 4.6863 4.6863 4.6863 12.2288 4.6863 27.3137 L 920 416.775 c 0 15.0849 0 22.6274 -4.6863 27.3137 a 16 16 0 0 1 0 0 c -4.6863 4.6863 -12.2288 4.6863 -27.3137 4.6863 L 32 448.775 c -15.0849 0 -22.6274 0 -27.3137 -4.6863 a 16 16 0 0 1 0 0 c -4.6863 -4.6863 -4.6863 -12.2288 -4.6863 -27.3137 L 0 32 c 0 -15.0849 0 -22.6274 4.6863 -27.3137 a 16 16 0 0 1 0 0 c 4.6863 -4.6863 12.2288 -4.6863 27.3137 -4.6863 Z&quot;);">
+                            <div class="zlQd20 "
+                                style="--aspect-ratio: 41/20; --aspect-ratio-m: 41/20; --aspect-ratio-l: 41/20; flex: 1 1 0%;">
+                                <picture>
+                                    <source
+                                        srcset="https://rukminim2.flixcart.com/fk-p-flap/1620/790/image/ad699ac3671af6e3.jpeg?q=80 1x, https://rukminim2.flixcart.com/fk-p-flap/3240/1580/image/ad699ac3671af6e3.jpeg?q=60 2x, "
+                                        media="(min-width: 1192px)">
+                                    <source
+                                        srcset="https://rukminim2.flixcart.com/fk-p-flap/1010/490/image/ad699ac3671af6e3.jpeg?q=80 1x, https://rukminim2.flixcart.com/fk-p-flap/2020/980/image/ad699ac3671af6e3.jpeg?q=60 2x, "
+                                        media="(min-width: 768px) and (max-width: 1191px)"><img loading="lazy"
+                                        alt="Image"
+                                        srcset="https://rukminim2.flixcart.com/fk-p-flap/480/230/image/ad699ac3671af6e3.jpeg?q=80 1x, https://rukminim2.flixcart.com/fk-p-flap/960/460/image/ad699ac3671af6e3.jpeg?q=60 2x, "
+                                        style="width: 100%; margin: auto; display: block; object-fit: cover; opacity: 1; aspect-ratio: 41 / 20;"
+                                        src="https://rukminim2.flixcart.com/fk-p-flap/1010/490/image/ad699ac3671af6e3.jpeg?q=90">
+                                </picture><img
+                                    src="https://rukminim2.flixcart.com/fk-p-flap/1010/490/image/ad699ac3671af6e3.jpeg?q=20"
+                                    loading="lazy" alt="Slide 3"
+                                    style="width: 100%; margin: auto; display: block; position: absolute; inset: 0px; padding: inherit; object-fit: cover; opacity: 0; aspect-ratio: 41 / 20;">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <button class="carousel-control-prev rounded-end-1 opacity-75 align-self-center bg-dark h-25"
+                    style="width: 7%; cursor: default;" type="button" data-bs-target="#carouselExample2"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" style="height: 35%;" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next rounded-start-1 opacity-75 align-self-center bg-dark h-25"
+                    style="width: 7%; cursor: default;" type="button" data-bs-target="#carouselExample2"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" style="height: 35%;" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+            <div id="carouselExample3" class="carousel carousel-dark slide d-none d-lg-block" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExample3" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExample3" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExample3" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="3000">
+                        <a class="_3n8fna1co _3n8fna10j _3n8fnaod _3n8fna1 _3n8fnac7 _1i2djtb9 _9nihix1c"
+                            href="https://www.flipkart.com/big-bachat-day-feb-25-store"
+                            style="align-items: stretch; border-width: 0px; box-sizing: border-box; display: flex; flex-direction: column; min-height: 0px; min-width: 0px; position: relative; z-index: 0;">
+                            <div class="zlQd20 "
+                                style="--aspect-ratio: 211/35; --aspect-ratio-m: 211/35; --aspect-ratio-l: 211/35; flex: 1 1 0%;">
+                                <picture>
+                                    <source
+                                        srcset="https://rukminim1.flixcart.com/fk-p-flap/1620/270/image/34515a3294c8a8f9.jpg?q=80 1x, https://rukminim1.flixcart.com/fk-p-flap/3240/540/image/34515a3294c8a8f9.jpg?q=60 2x, "
+                                        media="(min-width: 1192px)">
+                                    <source
+                                        srcset="https://rukminim1.flixcart.com/fk-p-flap/1010/170/image/34515a3294c8a8f9.jpg?q=80 1x, https://rukminim1.flixcart.com/fk-p-flap/2020/340/image/34515a3294c8a8f9.jpg?q=60 2x, "
+                                        media="(min-width: 768px) and (max-width: 1191px)"><img loading="eager"
+                                        alt="Image"
+                                        srcset="https://rukminim1.flixcart.com/fk-p-flap/480/80/image/34515a3294c8a8f9.jpg?q=80 1x, https://rukminim1.flixcart.com/fk-p-flap/960/160/image/34515a3294c8a8f9.jpg?q=60 2x, "
+                                        style="width: 100%; margin: auto; display: block; object-fit: cover; opacity: 1; aspect-ratio: 211 / 35;"
+                                        src="https://rukminim1.flixcart.com/fk-p-flap/1010/170/image/34515a3294c8a8f9.jpg?q=90">
+                                </picture><img
+                                    src="https://rukminim1.flixcart.com/fk-p-flap/1010/170/image/34515a3294c8a8f9.jpg?q=20"
+                                    loading="eager" alt="Slide 1"
+                                    style="width: 100%; margin: auto; display: block; position: absolute; inset: 0px; padding: inherit; object-fit: cover; opacity: 0; aspect-ratio: 211 / 35;">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="3000">
+                        <a class="_3n8fna1co _3n8fna10j _3n8fnaod _3n8fna1 _3n8fnac7 _1i2djtb9 _9nihix1c"
+                            href="https://www.flipkart.com/travel/flights?param=TravelDT-BBDH-HPW-roundtrip"
+                            style="align-items: stretch; border-width: 0px; box-sizing: border-box; display: flex; flex-direction: column; min-height: 0px; min-width: 0px; position: relative; z-index: 0;">
+                            <div class="zlQd20 "
+                                style="--aspect-ratio: 211/35; --aspect-ratio-m: 211/35; --aspect-ratio-l: 211/35; flex: 1 1 0%;">
+                                <picture>
+                                    <source
+                                        srcset="https://rukminim1.flixcart.com/fk-p-flap/1620/270/image/3d7827c92a670177.jpg?q=80 1x, https://rukminim1.flixcart.com/fk-p-flap/3240/540/image/3d7827c92a670177.jpg?q=60 2x, "
+                                        media="(min-width: 1192px)">
+                                    <source
+                                        srcset="https://rukminim1.flixcart.com/fk-p-flap/1010/170/image/3d7827c92a670177.jpg?q=80 1x, https://rukminim1.flixcart.com/fk-p-flap/2020/340/image/3d7827c92a670177.jpg?q=60 2x, "
+                                        media="(min-width: 768px) and (max-width: 1191px)"><img loading="lazy"
+                                        alt="Image"
+                                        srcset="https://rukminim1.flixcart.com/fk-p-flap/480/80/image/3d7827c92a670177.jpg?q=80 1x, https://rukminim1.flixcart.com/fk-p-flap/960/160/image/3d7827c92a670177.jpg?q=60 2x, "
+                                        style="width: 100%; margin: auto; display: block; object-fit: cover; opacity: 1; aspect-ratio: 211 / 35;"
+                                        src="https://rukminim1.flixcart.com/fk-p-flap/1010/170/image/3d7827c92a670177.jpg?q=90">
+                                </picture><img
+                                    src="https://rukminim1.flixcart.com/fk-p-flap/1010/170/image/3d7827c92a670177.jpg?q=20"
+                                    loading="lazy" alt="Slide 2"
+                                    style="width: 100%; margin: auto; display: block; position: absolute; inset: 0px; padding: inherit; object-fit: cover; opacity: 0; aspect-ratio: 211 / 35;">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="3000">
+                        <a class="_3n8fna1co _3n8fna10j _3n8fnaod _3n8fna1 _3n8fnac7 _1i2djtb9 _9nihix1c"
+                            href="https://www.flipkart.com/travel/flights?param=TravelDT-HPW-Domestic-FLYFK-booknow-grabit"
+                            style="align-items: stretch; border-width: 0px; box-sizing: border-box; display: flex; flex-direction: column; min-height: 0px; min-width: 0px; position: relative; z-index: 0;">
+                            <div class="zlQd20 "
+                                style="--aspect-ratio: 211/35; --aspect-ratio-m: 211/35; --aspect-ratio-l: 211/35; flex: 1 1 0%;">
+                                <picture>
+                                    <source
+                                        srcset="https://rukminim1.flixcart.com/fk-p-flap/1620/270/image/86dd5564754e79f3.jpg?q=80 1x, https://rukminim1.flixcart.com/fk-p-flap/3240/540/image/86dd5564754e79f3.jpg?q=60 2x, "
+                                        media="(min-width: 1192px)">
+                                    <source
+                                        srcset="https://rukminim1.flixcart.com/fk-p-flap/1010/170/image/86dd5564754e79f3.jpg?q=80 1x, https://rukminim1.flixcart.com/fk-p-flap/2020/340/image/86dd5564754e79f3.jpg?q=60 2x, "
+                                        media="(min-width: 768px) and (max-width: 1191px)"><img loading="lazy"
+                                        alt="Image"
+                                        srcset="https://rukminim1.flixcart.com/fk-p-flap/480/80/image/86dd5564754e79f3.jpg?q=80 1x, https://rukminim1.flixcart.com/fk-p-flap/960/160/image/86dd5564754e79f3.jpg?q=60 2x, "
+                                        style="width: 100%; margin: auto; display: block; object-fit: cover; opacity: 1; aspect-ratio: 211 / 35;"
+                                        src="https://rukminim1.flixcart.com/fk-p-flap/1010/170/image/86dd5564754e79f3.jpg?q=90">
+                                </picture><img
+                                    src="https://rukminim1.flixcart.com/fk-p-flap/1010/170/image/86dd5564754e79f3.jpg?q=20"
+                                    loading="lazy" alt="Slide 3"
+                                    style="width: 100%; margin: auto; display: block; position: absolute; inset: 0px; padding: inherit; object-fit: cover; opacity: 0; aspect-ratio: 211 / 35;">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <button class="carousel-control-prev rounded-end-1 opacity-75 align-self-center bg-dark h-25"
+                    style="width: 3%; cursor: default;" type="button" data-bs-target="#carouselExample3"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" style="height: 35%;" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next rounded-start-1 opacity-75 align-self-center bg-dark h-25"
+                    style="width: 3%; cursor: default;" type="button" data-bs-target="#carouselExample3"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" style="height: 35%;" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+            <!-- Cards -->
+            <div class="card mt-4 border border-0">
+                <h5 class="join fw-bold pt-3 ms-3 text-truncate">Best of Electronics & Appliances</h5>
+                <div class="cards d-flex overflow-y-hidden pb-3">
+                    <div
+                        class="card-item d-inline-flex flex-column justify-content-end align-items-center m-3 mt-1 border border-0 rounded-3">
+                        <a href="https://www.flipkart.com/motorola-edge-50-pro-5g-125w-charger-caneel-bay-256-gb/p/itm1603f674e2178?pid=MOBH2YWHMKHAFHZF&lid=LSTMOBH2YWHMKHAFHZFUTQD0D&marketplace=FLIPKART&store=tyy%2F4io&srno=b_1_1&otracker=browse&fm=organic&iid=c28d8a5d-043e-480c-be76-50d0774c9ee9.MOBH2YWHMKHAFHZF.SEARCH&ppt=hp&ppn=homepage&ssid=wy127ya0kw0000001741775159940"
+                            target="_blank" rel="noopener noreferrer">
+                            <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/mobile/p/o/i/-original-imah4kfuzzxz6tvn.jpeg?q=70&crop=false"
+                                loading="lazy" alt="Image" class="img-fluid"
+                                style="width: 9em; margin: auto; margin-bottom: 10px; display: block; aspect-ratio: 1 / 1;">
+                            <div class="lines">
+                                <p class="text-center text-truncate my-2">Mobiles</p>
+                                <p class="text-center card-subtitle text-success fw-medium"><span>40% off</span></p>
+                                <p class="text-center card-subtitle text-danger"><span>Order Now!</span></p>
+                            </div>
+                        </a>
+                    </div>
+                    <div
+                        class="card-item d-inline-flex flex-column justify-content-end align-items-center m-3 mt-1 border border-0 rounded-3">
+                        <a href="https://www.flipkart.com/samsung-7-kg-5-star-air-turbo-drying-semi-automatic-top-load-washing-machine-grey-purple/p/itm5c2eea1d02979?pid=WMNGCYG9HQFBCUBJ&marketplace=FLIPKART"
+                            target="_blank" rel="noopener noreferrer">
+                            <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/washing-machine-new/a/z/n/-original-imah8epqfay6ensq.jpeg?q=70&crop=false"
+                                loading="lazy" alt="Image" class="img-fluid"
+                                style="width: 9em; margin: auto; margin-top: 10px; display: block; aspect-ratio: 1 / 1;">
+                            <div class="lines">
+                                <p class="text-center text-truncate my-2">Washing Machines</p>
+                                <p class="text-center card-subtitle text-success fw-medium"><span>40% off</span></p>
+                                <p class="text-center card-subtitle text-danger"><span>Order Now!</span></p>
+                            </div>
+                        </a>
+                    </div>
+                    <div
+                        class="card-item d-inline-flex flex-column justify-content-end align-items-center m-3 mt-1 border border-0 rounded-3">
+                        <a href="https://www.flipkart.com/lg-20-l-i-wave-technology-indian-cuisine-auto-cook-menu-steam-clean-anti-bacterial-cavity-health-plus-menu-grill-microwave-oven/p/itmdz5v2y3ckyu9y?pid=MRCDZ5VFHGD7F7UV&lid=LSTMRCDZ5VFHGD7F7UVRRJYI2&marketplace=FLIPKART&q=microwave+oven&store=j9e%2Fm38%2Fo49&srno=s_1_8&otracker=AS_QueryStore_OrganicAutoSuggest_1_10_na_na_na&otracker1=AS_QueryStore_OrganicAutoSuggest_1_10_na_na_na&fm=organic&iid=dac6eab5-b2f5-4db4-b762-d507feb2298b.MRCDZ5VFHGD7F7UV.SEARCH&ppt=browse&ppn=browse&ssid=a5vwbjeuqo0000001741807819004&qH=473b4abe03a500c3"
+                            target="_blank" rel="noopener noreferrer">
+                            <div class="image w-100 overflow-hidden d-flex justify-content-center align-items-center">
+                                <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/microwave-new/l/k/7/-original-imah6dzazprgnyfm.jpeg?q=70&crop=false"
+                                    loading="lazy" alt="Image" class="img-fluid"
+                                    style="width: 10em; margin: auto; margin-bottom: 20px; display: block; aspect-ratio: 1.5 / 1;">
+                            </div>
+                            <div class="lines">
+                                <p class="text-center text-truncate my-2">Microwave Ovens</p>
+                                <p class="text-center card-subtitle text-success fw-medium"><span>40% off</span></p>
+                                <p class="text-center card-subtitle text-danger"><span>Order Now!</span></p>
+                            </div>
+                        </a>
+                    </div>
+                    <div
+                        class="card-item d-inline-flex flex-column justify-content-end align-items-center m-3 mt-1 border border-0 rounded-3">
+                        <a href="https://www.flipkart.com/boat-airdopes-alpha-35-hrs-playback-13mm-drivers-dual-mics-enx-beast-mode-bluetooth/p/itm1181f915b81ec?pid=ACCGP2HJA3HKHTF4&lid=LSTACCGP2HJA3HKHTF4VDDILL&marketplace=FLIPKART&fm=productRecommendation%2Fsimilar&iid=R%3As%3Bp%3AACCG6DS7WDJHGWSH%3Bl%3ALSTACCG6DS7WDJHGWSHBJS8FW%3Bpt%3App%3Buid%3A3f37db64-ff26-11ef-8e0d-1db907dbfccf%3B.ACCGP2HJA3HKHTF4&ppt=pp&ppn=pp&ssid=az3tces8ao0000001741772491235&otracker=pp_reco_Similar%2BProducts_1_37.productCard.PMU_HORIZONTAL_boAt%2BAirdopes%2BAlpha%2Bwith%2B35%2BHRS%2BPlayback%252C%2B13mm%2BDrivers%252C%2BDual%2BMics%2BENx%2B%2526%2BBeast%2BMode%2BBluetooth_ACCGP2HJA3HKHTF4_productRecommendation%2Fsimilar_0&otracker1=pp_reco_PINNED_productRecommendation%2Fsimilar_Similar%2BProducts_GRID_productCard_cc_1_NA_view-all&cid=ACCGP2HJA3HKHTF4"
+                            target="_blank" rel="noopener noreferrer"><img
+                                src="https://rukminim2.flixcart.com/image/312/312/xif0q/headphone/m/u/5/-original-imahf3h3cgzg6mrc.jpeg?q=70&crop=false"
+                                loading="lazy" alt="Image" class="img-fluid"
+                                style="width: 9em; margin: auto; display: block; aspect-ratio: 1 / 1;">
+                            <div class="lines">
+                                <p class="text-center text-truncate my-2">Bluetooth Headphones</p>
+                                <p class="text-center card-subtitle text-success fw-medium"><span>40% off</span></p>
+                                <p class="text-center card-subtitle text-danger"><span>Order Now!</span></p>
+                            </div>
+                        </a>
+                    </div>
+                    <div
+                        class="card-item d-inline-flex flex-column justify-content-end align-items-center m-3 mt-1 border border-0 rounded-3">
+                        <a href="https://www.flipkart.com/hp-victus-amd-ryzen-5-hexa-core-5600h-8-gb-512-gb-ssd-windows-11-home-4-graphics-amd-radeon-rx-6500m-15-fb0108ax-gaming-laptop/p/itmb91ad6452b1c7?pid=COMGRNGYYEX6Q6BZ&lid=LSTCOMGRNGYYEX6Q6BZIGDKTR&marketplace=FLIPKART&fm=neo%2Fmerchandising&iid=M_b8dba8a6-0300-4edd-ab5f-9cec324434e7_5_5W08EHWU85U7_MC.COMGRNGYYEX6Q6BZ&ppt=clp&ppn=tvs-and-appliances-new-clp-store&ssid=642qun54ls0000001741767919002&otracker=clp_pmu_v2_Gaming_3_5.productCard.PMU_V2_HP%2BVictus%2BAMD%2BRyzen%2B5%2BHexa%2BCore%2B5600H%2B-%2B%25288%2BGB%252F512%2BGB%2BSSD%252FWindows%2B11%2BHome%252F4%2BGB%2BGraphics%252FAMD%2BRadeon%2BRX%2B6500M%2529%2B15-fb0108AX%2BGaming%2BLaptop_laptops-store_COMGRNGYYEX6Q6BZ_neo%2Fmerchandising_2&otracker1=clp_pmu_v2_PINNED_neo%2Fmerchandising_Gaming_LIST_productCard_cc_3_NA_view-all&cid=COMGRNGYYEX6Q6BZ"
+                            target="_blank" rel="noopener noreferrer"><img
+                                src="https://rukminim2.flixcart.com/image/832/832/xif0q/computer/g/d/z/-original-imah5qcvxzc2xhgg.jpeg?q=70&crop=false"
+                                loading="lazy" alt="Image" class="img-fluid"
+                                style="width: 10em; margin: auto; margin-bottom: 15px; display: block; aspect-ratio: 1.2 / 1;">
+                            <div class="lines">
+                                <p class="text-center text-truncate my-2">PC/Laptops</p>
+                                <p class="text-center card-subtitle text-success fw-medium"><span>40% off</span></p>
+                                <p class="text-center card-subtitle text-danger"><span>Order Now!</span></p>
+                            </div>
+                        </a>
+                    </div>
+                    <div
+                        class="card-item d-inline-flex flex-column justify-content-end align-items-center m-3 mt-1 border border-0 rounded-3">
+                        <a href="https://www.flipkart.com/lg-2025-model-convertible-4-in-1-cooling-1-5-ton-5-star-window-dual-inverter-faster-energy-saving-4-way-air-swing-hd-filter-ac-white/p/itmb3af4745305ea?pid=ACNH83QZPBZPURGP&lid=LSTACNH83QZPBZPURGPXUAY3O&marketplace=FLIPKART&fm=neo%2Fmerchandising&iid=M_93386999-6044-4b44-90fd-efbb274c9168_8_V359OQ3YEGN1_MC.ACNH83QZPBZPURGP&ppt=clp&ppn=headphones-store&ssid=7ulmq30meo0000001741772988722&otracker=clp_pmu_v2_Window%2BACs_6_8.productCard.PMU_V2_LG%2B2025%2BModel%2BConvertible%2B4-in-1%2BCooling%2B1.5%2BTon%2B5%2BStar%2BWindow%2BDual%2BInverter%2Bwith%2BFaster%2BCooling%2Band%2BEnergy%2BSaving%252C%2B4%2BWay%2BAir%2BSwing%2Band%2BHD%2BFilter%2BAC%2B%2B-%2BWhite_acnewclp-store_ACNH83QZPBZPURGP_neo%2Fmerchandising_5&otracker1=clp_pmu_v2_PINNED_neo%2Fmerchandising_Window%2BACs_LIST_productCard_cc_6_NA_view-all&cid=ACNH83QZPBZPURGP"
+                            target="_blank" rel="noopener noreferrer">
+                            <div class="image w-100 overflow-hidden d-flex justify-content-center align-items-center">
+                                <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/air-conditioner-new/f/j/r/-original-imah9dga5eeftyzj.jpeg?q=70&crop=false"
+                                    loading="lazy" alt="Image" class="img-fluid"
+                                    style="width: 10em; margin: auto; display: block; aspect-ratio: 1.1 / 1;">
+                            </div>
+                            <div class="lines">
+                                <p class="text-center text-truncate my-2">Air Conditioners</p>
+                                <p class="text-center card-subtitle text-success fw-medium"><span>40% off</span></p>
+                                <p class="text-center card-subtitle text-danger"><span>Order Now!</span></p>
+                            </div>
+                        </a>
+                    </div>
+                    <div
+                        class="card-item d-inline-flex flex-column justify-content-end align-items-center m-3 mt-1 border border-0 rounded-3">
+                        <a href="https://www.flipkart.com/tp-link-tapo-c210p2-1296p-3mp-home-wi-fi-smart-security-camera/p/itm98bc7a7a24b95?pid=HSAGZBGGUYB2KZ7Z&lid=LSTHSAGZBGGUYB2KZ7ZTBDI5U&marketplace=FLIPKART&q=security+camera&store=igc%2Fj69%2Fagd&srno=s_1_17&otracker=AS_QueryStore_OrganicAutoSuggest_1_5_na_na_na&otracker1=AS_QueryStore_OrganicAutoSuggest_1_5_na_na_na&fm=search-autosuggest&iid=c747193f-0324-4c51-830f-5188f64e35cc.HSAGZBGGUYB2KZ7Z.SEARCH&ppt=sp&ppn=sp&qH=7c85c799f9bd72a9"
+                            target="_blank" rel="noopener noreferrer">
+                            <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/home-security-camera/i/t/o/-original-imagpf2vwpgnnehg.jpeg?q=70&crop=false"
+                                loading="lazy" alt="Image" class="img-fluid"
+                                style="width: 10em; margin: auto; margin-bottom: 10px; display: block; aspect-ratio: 1.1 / 1;">
+                            <div class="lines">
+                                <p class="text-center text-truncate my-2">Security Cameras</p>
+                                <p class="text-center card-subtitle text-success fw-medium"><span>40% off</span></p>
+                                <p class="text-center card-subtitle text-danger"><span>Order Now!</span></p>
+                            </div>
+                        </a>
+                    </div>
+                    <div
+                        class="card-item d-inline-flex flex-column justify-content-end align-items-center m-3 mt-1 border border-0 rounded-3">
+                        <a href="https://www.flipkart.com/samsung-new-d-series-brighter-crystal-4k-vision-pro-2024-edition-108-cm-43-inch-ultra-hd-4k-led-smart-tizen-tv-upscaling-multiple-voice-assistance-remote-purcolor-hdr-10-auto-game-mode-q-symphony-knox-security/p/itm8580c5c3990d8?pid=TVSGYWKBKGZZ7FKY&lid=LSTTVSGYWKBKGZZ7FKYGN28O7&marketplace=FLIPKART&store=ckf%2Fczl&srno=b_1_2&otracker=CLP_filters&fm=search-autosuggest&iid=6494042f-d3c4-4757-bd57-de01da32a52d.TVSGYWKBKGZZ7FKY.SEARCH&ppt=sp&ppn=sp&ssid=kctgnmbo280000001741775778234"
+                            target="_blank" rel="noopener noreferrer">
+                            <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/television/u/v/o/-original-imah2v2gamua43wz.jpeg?q=70&crop=false"
+                                loading="lazy" alt="Image" class="img-fluid"
+                                style="width: 10em; margin: auto; margin-bottom: 20px; display: block; aspect-ratio: 1.3 / 1;">
+                            <div class="lines">
+                                <p class="text-center text-truncate my-2">Smart TV's</p>
+                                <p class="text-center card-subtitle text-success fw-medium"><span>40% off</span></p>
+                                <p class="text-center card-subtitle text-danger"><span>Order Now!</span></p>
+                            </div>
+                        </a>
+                    </div>
+                    <div
+                        class="card-item d-inline-flex flex-column justify-content-end align-items-center m-3 mt-1 border border-0 rounded-3">
+                        <a href="https://www.flipkart.com/boat-wave-fury-1-83-hd-display-bluetooth-calling-functional-crown-smartwatch/p/itm8a785ea5801dc?pid=SMWGQHN4MWU6ZJGN&lid=LSTSMWGQHN4MWU6ZJGNRJO52S&marketplace=FLIPKART&q=smart+watch&store=ajy%2Fbuh&srno=s_1_9&otracker=AS_QueryStore_OrganicAutoSuggest_1_8_na_na_ps&otracker1=AS_QueryStore_OrganicAutoSuggest_1_8_na_na_ps&fm=search-autosuggest&iid=3734df23-a293-4955-aef2-aaffc30b38ee.SMWGQHN4MWU6ZJGN.SEARCH&ppt=sp&ppn=sp&ssid=0v9g8dd65s0000001741776309061&qH=acc05e33fb140cc4"
+                            target="_blank" rel="noopener noreferrer">
+                            <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/smartwatch/v/8/r/-original-imagy97z4qgjheyn.jpeg?q=70&crop=false"
+                                loading="lazy" alt="Image" class="img-fluid"
+                                style="width: 10em; margin: auto; margin-bottom: 10px; display: block; aspect-ratio: 1.1 / 1;">
+                            <div class="lines">
+                                <p class="text-center text-truncate my-2">Smartwatches</p>
+                                <p class="text-center card-subtitle text-success fw-medium"><span>40% off</span></p>
+                                <p class="text-center card-subtitle text-danger"><span>Order Now!</span></p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mt-4 border border-0">
+                <h5 class="join fw-bold pt-3 ms-3 text-truncate">Clothing, Furniture, Books & more <img
+                        src="/img/new.gif" class="img-fluid" alt="">
+                </h5>
+                <div class="cards d-flex overflow-y-hidden pb-3">
+                    <div
+                        class="card-item d-inline-flex flex-column justify-content-end align-items-center m-3 mt-1 border border-0 rounded-3">
+                        <a href="https://www.flipkart.com/every-choice-tapered-fit-men-black-jeans/p/itm67b5e1aa3cca8?pid=JEAH5E7BBBQV2Y4U&lid=LSTJEAH5E7BBBQV2Y4UAZRMIJ&marketplace=FLIPKART&sattr[]=size&st=size"
+                            target="_blank" rel="noopener noreferrer"><img
+                                src="https://rukminim2.flixcart.com/image/832/832/xif0q/jean/k/y/y/30-ever-01-everychoice-original-imah5e7bvbr8vyhz.jpeg?q=70&crop=false"
+                                loading="lazy" alt="Image" class="img-fluid"
+                                style="width: 9em; margin: auto; display: block; aspect-ratio: 1 / 1;">
+                            <div class="lines">
+                                <p class="text-center text-truncate my-2">Jeans & Trousers</p>
+                                <p class="text-center card-subtitle text-success fw-medium"><span>40% off</span></p>
+                                <p class="text-center card-subtitle text-danger"><span>Order Now!</span></p>
+                            </div>
+                        </a>
+                    </div>
+                    <div
+                        class="card-item d-inline-flex flex-column justify-content-end align-items-center m-3 mt-1 border border-0 rounded-3">
+                        <a href="https://www.flipkart.com/apj-enterprise-monster-truck-toys-car-kids/p/itm9bc069acba5e2?pid=RCTGWAKYZFU3JQNQ&lid=LSTRCTGWAKYZFU3JQNQNQVBNQ&marketplace=FLIPKART&store=tng%2F56a%2Ffq8&srno=b_1_7&otracker=nmenu_sub_Baby%20%26%20Kids_0_Remote%20Control%20Toys&fm=search-autosuggest&iid=410e3311-dce2-4906-8628-0a233ff98efc.RCTGWAKYZFU3JQNQ.SEARCH&ppt=browse&ppn=browse&ssid=5g2fdyzdzk0000001741808903482"
+                            target="_blank" rel="noopener noreferrer"><img
+                                src="https://rukminim2.flixcart.com/image/832/832/xif0q/remote-control-toy/j/w/k/monster-truck-toys-car-for-kids-0-apj-enterprise-original-imah6rvxydsjhrfc.jpeg?q=70&crop=false"
+                                loading="lazy" alt="Image" class="img-fluid"
+                                style="width: 10em; margin: auto; margin-bottom: 10px; display: block; aspect-ratio: 1.1 / 1;">
+                            <div class="lines">
+                                <p class="text-center text-truncate my-2">Remote Control Toys</p>
+                                <p class="text-center card-subtitle text-success fw-medium"><span>40% off</span></p>
+                                <p class="text-center card-subtitle text-danger"><span>Order Now!</span></p>
+                            </div>
+                        </a>
+                    </div>
+                    <div
+                        class="card-item d-inline-flex flex-column justify-content-end align-items-center m-3 mt-1 border border-0 rounded-3">
+                        <a href="https://www.flipkart.com/vebnor-printed-men-track-suit/p/itm2a74272217de1?pid=TKSGXY89CPF794DU&lid=LSTTKSGXY89CPF794DUDS9FD7&marketplace=FLIPKART&store=clo%2Fnyk%2Fzp4&spotlightTagId=FkPickId_clo%2Fnyk%2Fzp4&srno=b_1_2&otracker=browse&fm=search-autosuggest&iid=639f9a9f-db1b-4da2-b4cf-12e795a9801a.TKSGXY89CPF794DU.SEARCH&ppt=browse&ppn=browse&ssid=jljawhlwnk0000001741810283358"
+                            target="_blank" rel="noopener noreferrer"><img
+                                src="https://rukminim2.flixcart.com/image/832/832/xif0q/track-suit/a/i/k/l-trs4-vebnor-original-imah4w94ufurhccf.jpeg?q=70&crop=false"
+                                loading="lazy" alt="Image" class="img-fluid"
+                                style="width: 9em; margin: auto; display: block; aspect-ratio: 1 / 1;">
+                            <div class="lines">
+                                <p class="text-center text-truncate my-2">Tracksuits</p>
+                                <p class="text-center card-subtitle text-success fw-medium"><span>40% off</span></p>
+                                <p class="text-center card-subtitle text-danger"><span>Order Now!</span></p>
+                            </div>
+                        </a>
+                    </div>
+                    <div
+                        class="card-item d-inline-flex flex-column justify-content-end align-items-center m-3 mt-1 border border-0 rounded-3">
+                        <a href="https://www.flipkart.com/geniyo-4-compartments-desk-organizer-metal-mesh-pen-stand-pencil-holder-office-table/p/itm97effb76036b2?pid=DKOGMDZ3KZZ5JUS3&lid=LSTDKOGMDZ3KZZ5JUS3IPXD7B&marketplace=FLIPKART&store=dgv%2Ftkw%2Fhlr&srno=b_1_18&otracker=nmenu_sub_Sports%2C%20Books%20%26%20More_0_Desk%20Organizers&fm=neo%2Fmerchandising&iid=c840d541-d001-4991-96e8-44b6edd42972.DKOGMDZ3KZZ5JUS3.SEARCH&ppt=browse&ppn=browse&ssid=328t3asimo0000001741811995463"
+                            target="_blank" rel="noopener noreferrer"><img
+                                src="https://rukminim2.flixcart.com/image/832/832/kusph8w0/desk-organizer/s/4/3/3-compartments-metal-metal-mesh-desk-organizer-for-office-pen-original-imag7ua6werywz2e.jpeg?q=70&crop=false"
+                                loading="lazy" alt="Image" class="img-fluid"
+                                style="width: 10em; margin: auto; margin-bottom: 15px; display: block; aspect-ratio: 1.1 / 1;">
+                            <div class="lines">
+                                <p class="text-center text-truncate my-2">Stationary Items</p>
+                                <p class="text-center card-subtitle text-success fw-medium"><span>40% off</span></p>
+                                <p class="text-center card-subtitle text-danger"><span>Order Now!</span></p>
+                            </div>
+                        </a>
+                    </div>
+                    <div
+                        class="card-item d-inline-flex flex-column justify-content-end align-items-center m-3 mt-1 border border-0 rounded-3">
+                        <a href="https://www.flipkart.com/kobbet-interlocking-puzzle-mat-36-pcs-alphabet-abc-non-toxic-floor-mats-kids/p/itm68a74038818ec?pid=PUZHFXHUNGWTCYZA&lid=LSTPUZHFXHUNGWTCYZAPF0E59&marketplace=FLIPKART&store=tng%2Fkk6&srno=b_1_2&otracker=nmenu_sub_Baby%20%26%20Kids_0_Puzzles&fm=organic&iid=en_1iYUtpw68tVoGshyLFu4PyYIqsLQeImOdGD26W-TXPOkN_ShhHABOWpIGt3qctRBUN89Y7t24INwxIAjwIF9Gw%3D%3D&ppt=browse&ppn=browse&ssid=igndkwlnts0000001741850205503"
+                            target="_blank" rel="noopener noreferrer">
+                            <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/learning-toy/j/n/t/36-pc-alphabet-number-floor-mats-for-kids-puzzle-eva-foam-mat-original-imahfmcqdr2adp8k.jpeg?q=70&crop=false"
+                                loading="lazy" alt="Image" class="img-fluid"
+                                style="width: 10em; margin: auto; margin-bottom: 10px; display: block; aspect-ratio: 1.1 / 1;">
+                            <div class="lines">
+                                <p class="text-center text-truncate my-2">Puzzles & Cubes</p>
+                                <p class="text-center card-subtitle text-success fw-medium"><span>40% off</span></p>
+                                <p class="text-center card-subtitle text-danger"><span>Order Now!</span></p>
+                            </div>
+                        </a>
+                    </div>
+                    <div
+                        class="card-item d-inline-flex flex-column justify-content-end align-items-center m-3 mt-1 border border-0 rounded-3">
+                        <a href="https://www.flipkart.com/decent-home-240-tc-cotton-double-floral-fitted-elastic-bedsheet/p/itm82f076c851ca4?pid=BDSH4DPPZ2K8XTFH&lid=LSTBDSH4DPPZ2K8XTFH6WNC2B&marketplace=FLIPKART&store=jra%2Fknw%2Fqcw&spotlightTagId=BestsellerId_jra%2Fknw%2Fqcw&srno=b_1_1&otracker=nmenu_sub_Home%20%26%20Furniture_0_Bedsheets&fm=search-autosuggest&iid=fa8c6e07-c533-41e0-87ae-21ba541613bd.BDSH4DPPZ2K8XTFH.SEARCH&ppt=browse&ppn=browse&ssid=lw7eti0fww0000001741811225849"
+                            target="_blank" rel="noopener noreferrer"><img
+                                src="https://rukminim2.flixcart.com/image/832/832/xif0q/bedsheet/x/q/e/fitted-orchid-1-fit6-fitted-elastic-decent-home-original-imah4dpzgm2azfgt.jpeg?q=70&crop=false"
+                                loading="lazy" alt="Image" class="img-fluid"
+                                style="width: 9em; margin: auto; display: block; aspect-ratio: 1 / 1;">
+                            <div class="lines">
+                                <p class="text-center text-truncate my-2">Bedsheets</p>
+                                <p class="text-center card-subtitle text-success fw-medium"><span>40% off</span></p>
+                                <p class="text-center card-subtitle text-danger"><span>Order Now!</span></p>
+                            </div>
+                        </a>
+                    </div>
+                    <div
+                        class="card-item d-inline-flex flex-column justify-content-end align-items-center m-3 mt-1 border border-0 rounded-3">
+                        <a href="https://www.flipkart.com/upsc-new-syllabus-tips-crack-ias-preliminary-mains-exam-rapid-gk-2019-ebook-3rd/p/itm997fdbffe4576?pid=9789388240130&lid=LSTBOK97893882401303SBWMR&marketplace=FLIPKART&store=bks&srno=b_1_4&otracker=clp_banner_1_9.banner.BANNER_the-exam-store_UPXPKUUMYF2D&fm=neo%2Fmerchandising&iid=7ad0f54f-6270-4489-ac55-6ce97874e72d.9789388240130.SEARCH&ppt=clp&ppn=the-exam-store&ssid=t61ffeyygw0000001741811570490"
+                            target="_blank" rel="noopener noreferrer"><img
+                                src="https://rukminim2.flixcart.com/image/832/832/kklhbbk0/book/p/z/n/upsc-new-syllabus-tips-to-crack-ias-preliminary-and-mains-exam-original-imafzwtr9gguvpvj.jpeg?q=70&crop=false"
+                                loading="lazy" alt="Image" class="img-fluid"
+                                style="width: 9em; margin: auto; display: block; aspect-ratio: 1 / 1;">
+                            <div class="lines">
+                                <p class="text-center text-truncate my-2">Academic Books</p>
+                                <p class="text-center card-subtitle text-success fw-medium"><span>40% off</span></p>
+                                <p class="text-center card-subtitle text-danger"><span>Order Now!</span></p>
+                            </div>
+                        </a>
+                    </div>
+                    <div
+                        class="card-item d-inline-flex flex-column justify-content-end align-items-center m-3 mt-1 border border-0 rounded-3">
+                        <a href="https://www.flipkart.com/flipzon-1-door-6-shelf-fabric-pp-collapsible-wardrobe/p/itme5a4510e4b48c?pid=CWDGPSU4VWFSSGUK&lid=LSTCWDGPSU4VWFSSGUKU3STAA&marketplace=FLIPKART&store=wwe%2Ffc3&srno=b_1_1&otracker=nmenu_sub_Home%20%26%20Furniture_0_Wardrobes&fm=neo%2Fmerchandising&iid=5f345f96-210b-4cc6-9656-8e88e28d2a67.CWDGPSU4VWFSSGUK.SEARCH&ppt=browse&ppn=browse&ssid=0w4hdlazdc0000001741812279926"
+                            target="_blank" rel="noopener noreferrer"><img
+                                src="https://rukminim2.flixcart.com/image/832/832/xif0q/collapsible-wardrobe/2/b/u/carbon-steel-plastic-pp-collapsible-wardrobe-1-door-6-shelves-original-imagzyw88bs53bhb.jpeg?q=70&crop=false"
+                                loading="lazy" alt="Image" class="img-fluid"
+                                style="width: 9em; margin: auto; display: block; aspect-ratio: 1 / 1;">
+                            <div class="lines">
+                                <p class="text-center text-truncate my-2">Wardrobes</p>
+                                <p class="text-center card-subtitle text-success fw-medium"><span>40% off</span></p>
+                                <p class="text-center card-subtitle text-danger"><span>Order Now!</span></p>
+                            </div>
+                        </a>
+                    </div>
+                    <div
+                        class="card-item d-inline-flex flex-column justify-content-end align-items-center m-3 mt-1 border border-0 rounded-3">
+                        <a href="https://www.flipkart.com/di-kraft-wiro-binding-a5-diary-unruled-160-pages/p/itm24373e4999a58?pid=DIAFPBP4ZQ7H6AHE&lid=LSTDIAFPBP4ZQ7H6AHEXYRUIE&marketplace=FLIPKART&store=dgv%2Ftkw%2Fmwh&srno=b_1_15&otracker=product_breadCrumbs_Diaries&fm=neo%2Fmerchandising&iid=694a5bbc-c8b8-4d58-8321-177ea7bdb49f.DIAFPBP4ZQ7H6AHE.SEARCH&ppt=browse&ppn=browse&ssid=kwo3o539sg0000001741812591926"
+                            target="_blank" rel="noopener noreferrer"><img
+                                src="https://rukminim2.flixcart.com/image/832/832/xif0q/diary-notebook/0/i/7/simple-quote-design-wiro-binding-multicolor-notebook-unruled-original-imah7yuwqj8jscfg.jpeg?q=70&crop=false"
+                                loading="lazy" alt="Image" class="img-fluid"
+                                style="width: 10em; margin: auto; margin-bottom: 10px; display: block; aspect-ratio: 1.1 / 1;">
+                            <div class="lines">
+                                <p class="text-center text-truncate my-2">Notebooks & Diaries</p>
+                                <p class="text-center card-subtitle text-success fw-medium"><span>40% off</span></p>
+                                <p class="text-center card-subtitle text-danger"><span>Order Now!</span></p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mt-4 border border-0">
+                <h5 class="join fw-bold pt-3 ms-3 text-truncate">Sports, Food Essentials, Fitness & more <img
+                        src="/img/new.gif" class="img-fluid" alt="">
+                </h5>
+                <div class="cards d-flex overflow-y-hidden pb-3">
+                    <div
+                        class="card-item d-inline-flex flex-column justify-content-end align-items-center m-3 mt-1 border border-0 rounded-3">
+                        <a href="https://www.flipkart.com/bigmuscles-nutrition-real-high-protein-muscles-mass-gainer-added-bcaa-glutamine-weight-gainers-mass-gainers/p/itm3fbfd089d1116?pid=PSLGHCR3FBWEVCWZ&lid=LSTPSLGHCR3FBWEVCWZKIZ1S9&marketplace=FLIPKART&store=hlc%2Fetg%2F1rx&srno=b_1_2&otracker=browse&fm=search-autosuggest&iid=en_5dTEUvi9oFOWJVCglXyDi4iaO1EPrBqMB1-CRF-Gw1ppm270PTDOD_GkKX6KfuUoOWNwHA7m0niexoX3ivy2gfUFjCTyOHoHZs-Z5_PS_w0%3D&ppt=browse&ppn=browse&ssid=2vk9eq8ia80000001741851418233"
+                            target="_blank" rel="noopener noreferrer">
+                            <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/protein-supplement/d/s/c/weight-gainers-mass-gainers-real-mass-gainer-high-protein-original-imaghcr3am7yyrfr.jpeg?q=70&crop=false"
+                                loading="lazy" alt="Image" class="img-fluid"
+                                style="width: 9em; margin: auto; margin-bottom: 10px; display: block; aspect-ratio: 1 / 1;">
+                            <div class="lines">
+                                <p class="text-center text-truncate my-2">Protein Shakes</p>
+                                <p class="text-center card-subtitle text-success fw-medium"><span>40% off</span></p>
+                                <p class="text-center card-subtitle text-danger"><span>Order Now!</span></p>
+                            </div>
+                        </a>
+                    </div>
+                    <div
+                        class="card-item d-inline-flex flex-column justify-content-end align-items-center m-3 mt-1 border border-0 rounded-3">
+                        <a href="https://www.flipkart.com/farmley-dry-fruit-mix-panchmeva-almond-cashew-dates-black-raisin-green-raisin/p/itmecfa1643f1671?pid=NDFG8MFYEMGYTGMP&lid=LSTNDFG8MFYEMGYTGMPXCBJ1A&marketplace=FLIPKART&store=eat&srno=b_1_2&otracker=browse&fm=search-autosuggest&iid=en_fhpo0EsGCDMdzspAG4uu-x2CKOsa-zAeNSu6CXzNbgC8_8zbiMKsvxFscnZGDWzom-kzCh44zIIKO1nAQY_vQfUFjCTyOHoHZs-Z5_PS_w0%3D&ppt=browse&ppn=browse&ssid=reardm0puo0000001741852151230"
+                            target="_blank" rel="noopener noreferrer">
+                            <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/nut-dry-fruit/k/o/j/425-dry-fruit-mix-panchmeva-superfood-1-mason-jar-farmley-original-imah3pwtubhwggza.jpeg?q=70&crop=false"
+                                loading="lazy" alt="Image" class="img-fluid"
+                                style="width: 10em; margin: auto; margin-bottom: 10px; display: block; aspect-ratio: 1.1 / 1;">
+                            <div class="lines">
+                                <p class="text-center text-truncate my-2">Nuts & Dry Fruits</p>
+                                <p class="text-center card-subtitle text-success fw-medium"><span>40% off</span></p>
+                                <p class="text-center card-subtitle text-danger"><span>Order Now!</span></p>
+                            </div>
+                        </a>
+                    </div>
+                    <div
+                        class="card-item d-inline-flex flex-column justify-content-end align-items-center m-3 mt-1 border border-0 rounded-3">
+                        <a href="https://www.flipkart.com/mprt-7-pc-cricket-combo-kit-bag-size-4-age/p/itmf5309672e7594?pid=KITFGYFFJBA6MD3Z&lid=LSTKITFGYFFJBA6MD3ZSQ5MPU&marketplace=FLIPKART&store=abc%2F5lf&srno=b_1_9&otracker=browse&fm=search-autosuggest&iid=ed50c40f-d0a7-4018-94d1-5bf6137513d4.KITFGYFFJBA6MD3Z.SEARCH&ppt=browse&ppn=browse&ssid=50jcnittps0000001741856698035"
+                            target="_blank" rel="noopener noreferrer">
+                            <img src="https://rukminim2.flixcart.com/image/832/832/jwuzzww0/kit/r/c/f/wooden-cricket-kit-for-tennis-ball-size-5-combo-original-imafghfqskrbtwz3.jpeg?q=70&crop=false"
+                                loading="lazy" alt="Image" class="img-fluid"
+                                style="width: 10em; margin: auto; display: block; aspect-ratio: 1 / 1;">
+                            <div class="lines">
+                                <p class="text-center text-truncate my-2">Cricket Kit</p>
+                                <p class="text-center card-subtitle text-success fw-medium"><span>40% off</span></p>
+                                <p class="text-center card-subtitle text-danger"><span>Order Now!</span></p>
+                            </div>
+                        </a>
+                    </div>
+                    <div
+                        class="card-item d-inline-flex flex-column justify-content-end align-items-center m-3 mt-1 border border-0 rounded-3">
+                        <a href="https://www.flipkart.com/techgear-bouncer-dumbbells-10-kg-x-2-20-set-fitness-heavy-duty-solid-rubber-fixed-weight-dumbbell/p/itm69ec741a6fd5d?pid=DBLH9GV4N7VNA6AQ&lid=LSTDBLH9GV4N7VNA6AQFEK0TP&marketplace=FLIPKART&store=qoc%2Facb%2Fzuc&srno=b_1_5&otracker=browse&fm=search-autosuggest&iid=37db95fb-6a31-4690-9a5d-fad39370a11d.DBLH9GV4N7VNA6AQ.SEARCH&ppt=browse&ppn=browse&ssid=le47bli77k0000001741856300385"
+                            target="_blank" rel="noopener noreferrer">
+                            <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/dumbbell/t/g/7/bouncer-dumbbells-10-kg-x-2-20-kg-set-fitness-heavy-duty-solid-original-imah9gs5nxzsuppz.jpeg?q=70&crop=false"
+                                loading="lazy" alt="Image" class="img-fluid"
+                                style="width: 10em; margin: auto; display: block; aspect-ratio: 1 / 1;">
+                            <div class="lines">
+                                <p class="text-center text-truncate my-2">Dumbbells</p>
+                                <p class="text-center card-subtitle text-success fw-medium"><span>40% off</span></p>
+                                <p class="text-center card-subtitle text-danger"><span>Order Now!</span></p>
+                            </div>
+                        </a>
+                    </div>
+                    <div
+                        class="card-item d-inline-flex flex-column justify-content-end align-items-center m-3 mt-1 border border-0 rounded-3">
+                        <a href="https://www.flipkart.com/victory-wrap-gym-fitness-gloves/p/itm8d032031d581e?pid=SGEG6NYVSX3NSHPN&lid=LSTSGEG6NYVSX3NSHPN9KQMJJ&marketplace=FLIPKART&store=qoc%2Facb%2Fafr&spotlightTagId=BestsellerId_qoc%2Facb%2Fafr&srno=b_1_23&otracker=browse&fm=search-autosuggest&iid=1a4801d7-ac83-4ea4-8f70-8b867fae510d.SGEG6NYVSX3NSHPN.SEARCH&ppt=browse&ppn=browse"
+                            target="_blank" rel="noopener noreferrer">
+                            <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/shopsy-support/j/o/t/left-right-victory-professional-wrist-wrap-band-wrist-support-original-imagf9wctkv6qp7y.jpeg?q=70&crop=false"
+                                loading="lazy" alt="Image" class="img-fluid"
+                                style="width: 10em; margin: auto; display: block; aspect-ratio: 1 / 1;">
+                            <div class="lines">
+                                <p class="text-center text-truncate my-2">Gym Gloves</p>
+                                <p class="text-center card-subtitle text-success fw-medium"><span>40% off</span></p>
+                                <p class="text-center card-subtitle text-danger"><span>Order Now!</span></p>
+                            </div>
+                        </a>
+                    </div>
+                    <div
+                        class="card-item d-inline-flex flex-column justify-content-end align-items-center m-3 mt-1 border border-0 rounded-3">
+                        <a href="https://www.flipkart.com/myfitness-original-peanut-butter-crunchy/p/itm86755b61422bf?pid=JASF764JWDRA6KYA&lid=LSTJASF764JWDRA6KYANXA9WF&marketplace=FLIPKART&q=peanut+butter&store=eat%2Fxhv&srno=s_1_1&otracker=AS_QueryStore_OrganicAutoSuggest_1_2_na_na_na&otracker1=AS_QueryStore_OrganicAutoSuggest_1_2_na_na_na&fm=search-autosuggest&iid=b109f155-180f-4f8b-8ec6-442e6ce93e7d.JASF764JWDRA6KYA.SEARCH&ppt=sp&ppn=sp&ssid=sd8q1fgwxc0000001741850804154&qH=102d51d07445ed45"
+                            target="_blank" rel="noopener noreferrer">
+                            <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/jam-spread/c/c/q/-original-imagxau8adb4xzdk.jpeg?q=70&crop=false"
+                                loading="lazy" alt="Image" class="img-fluid"
+                                style="width: 10em; margin: auto; display: block; aspect-ratio: 1.1 / 1;">
+                            <div class="lines">
+                                <p class="text-center text-truncate my-2">Peanut Butter</p>
+                                <p class="text-center card-subtitle text-success fw-medium"><span>40% off</span></p>
+                                <p class="text-center card-subtitle text-danger"><span>Order Now!</span></p>
+                            </div>
+                        </a>
+                    </div>
+                    <div
+                        class="card-item d-inline-flex flex-column justify-content-end align-items-center m-3 mt-1 border border-0 rounded-3">
+                        <a href="https://www.flipkart.com/nakpro-cocoa-powder-unsweetened-alkalized-22-5g-protein-397-7g-energy-plant-based/p/itmb39075851dcdc?pid=BKIGV9NZQGFJEB7Z&lid=LSTBKIGV9NZQGFJEB7ZGW834T&marketplace=FLIPKART&store=eat&srno=b_1_34&otracker=browse&fm=search-autosuggest&iid=93f6cf20-09ca-40ba-97f4-d1000d4be946.BKIGV9NZQGFJEB7Z.SEARCH&ppt=browse&ppn=browse"
+                            target="_blank" rel="noopener noreferrer">
+                            <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/baking-ingredient/w/j/l/200-cocoa-powder-unsweetened-alkalized-22-5g-protein-397-7g-original-imah86zh5nykky3e.jpeg?q=70&crop=false"
+                                loading="lazy" alt="Image" class="img-fluid"
+                                style="width: 10em; margin: auto; display: block; aspect-ratio: 1.1 / 1;">
+                            <div class="lines">
+                                <p class="text-center text-truncate my-2">Coffee & Beverages</p>
+                                <p class="text-center card-subtitle text-success fw-medium"><span>40% off</span></p>
+                                <p class="text-center card-subtitle text-danger"><span>Order Now!</span></p>
+                            </div>
+                        </a>
+                    </div>
+                    <div
+                        class="card-item d-inline-flex flex-column justify-content-end align-items-center m-3 mt-1 border border-0 rounded-3">
+                        <a href="https://www.flipkart.com/ninety-one-e-drago-7-8ah-battery-front-suspension-250watts-ip65-bldc-motor-black-blue-27-5-inches-single-speed-lithium-ion-li-ion-electric-cycle/p/itm2501d0d86eb7d?pid=ECYH63NFFRYZBDYW&lid=LSTECYH63NFFRYZBDYWXOECQF&marketplace=FLIPKART&q=electric+cycle&store=abc%2Fulv%2Ftwp&srno=s_1_5&otracker=AS_QueryStore_OrganicAutoSuggest_1_4_na_na_ps&otracker1=AS_QueryStore_OrganicAutoSuggest_1_4_na_na_ps&fm=search-autosuggest&iid=324c4ec4-f08f-406e-95b5-6ec16e2ea9c9.ECYH63NFFRYZBDYW.SEARCH&ppt=sp&ppn=sp&ssid=yav15dl0zk0000001741854522443&qH=62401b19fcaef7d7"
+                            target="_blank" rel="noopener noreferrer">
+                            <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/electric-cycle/k/a/r/e-drago-7-8ah-battery-front-suspension-250watts-ip65-bldc-motor-original-imah9yezvcpmfyz8.jpeg?q=70&crop=false"
+                                loading="lazy" alt="Image" class="img-fluid"
+                                style="width: 10em; margin: auto; display: block; aspect-ratio: 1.1 / 1;">
+                            <div class="lines">
+                                <p class="text-center text-truncate my-2">Electric, Geared Cycles</p>
+                                <p class="text-center card-subtitle text-success fw-medium"><span>40% off</span></p>
+                                <p class="text-center card-subtitle text-danger"><span>Order Now!</span></p>
+                            </div>
+                        </a>
+                    </div>
+                    <div
+                        class="card-item d-inline-flex flex-column justify-content-end align-items-center m-3 mt-1 border border-0 rounded-3">
+                        <a href="https://www.flipkart.com/powermax-fitness-tdm-96-4hp-peak-motorized-foldable-running-machine-home-manual-incline-treadmill-max-weight-110-kg/p/itm6230b5a333fc0?pid=TRDGTPZNFGTGCRXV&lid=LSTTRDGTPZNFGTGCRXVOCG5FM&marketplace=FLIPKART&store=qoc%2Famf%2Foyq&spotlightTagId=BestsellerId_qoc%2Famf%2Foyq&srno=b_1_4&otracker=dynamic_omu_infinite_Strength%2B%2526%2BCardio%2BEquipment_6_1.dealCard.OMU_INFINITE_0P4B45YS1PQQ&fm=neo%2Fmerchandising&iid=8d4392be-d69d-4fec-80c1-e571269f4de9.TRDGTPZNFGTGCRXV.SEARCH&ppt=browse&ppn=browse&ssid=60aqw0ejog0000001741852486893"
+                            target="_blank" rel="noopener noreferrer">
+                            <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/treadmill/b/c/r/tdm-96-4hp-peak-motorized-foldable-running-machine-for-home-original-imaha688gynhegyj.jpeg?q=70&crop=false"
+                                loading="lazy" alt="Image" class="img-fluid"
+                                style="width: 10em; margin: auto; margin-bottom: 15px; display: block; aspect-ratio: 1.1 / 1;">
+                            <div class="lines">
+                                <p class="text-center text-truncate my-2">Treadmill, Exercise Bikes</p>
+                                <p class="text-center card-subtitle text-success fw-medium"><span>40% off</span></p>
+                                <p class="text-center card-subtitle text-danger"><span>Order Now!</span></p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="flex-all-center d-flex align-items-center justify-content-center column-gap-3 p-3 fs-6">
+            <div class="footer-left d-flex align-items-start justify-content-evenly column-gap-3">
+                <a href="https://www.flipkart.com/pages/terms?otracker=footer_navlinks">
+                    <p>Terms Of Use</p>
+                </a>
+                <a href="https://www.flipkart.com/pages/privacypolicy?otracker=footer_navlinks">
+                    <p>Privacy Policy</p>
+                </a>
+                <a href="https://www.flipkart.com/pages/returnpolicy?otracker=footer_navlinks">
+                    <p>Cancellation & Returns</p>
+                </a>
+            </div>
+            <div class="footer-right d-flex align-items-start justify-content-evenly column-gap-3 position-relative">
+                <a href="https://www.flipkart.com/pages/shipping">
+                    <p>Shipping Policy</p>
+                </a>
+                <div class="social-icons d-flex justify-content-center column-gap-2">
+                    <p>Follow us on</p>
+                    <a href="https://www.instagram.com/flipkart/" target="_blank" rel="noopener noreferrer"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#FFFFFF"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M11.999 7.377a4.623 4.623 0 1 0 0 9.248 4.623 4.623 0 0 0 0-9.248m0 7.627a3.004 3.004 0 1 1 0-6.008 3.004 3.004 0 0 1 0 6.008M16.806 6.129a1.078 1.078 0 1 0 0 2.156 1.078 1.078 0 1 0 0-2.156">
+                            </path>
+                            <path
+                                d="M20.533 6.111A4.6 4.6 0 0 0 17.9 3.479a6.6 6.6 0 0 0-2.186-.42c-.963-.042-1.268-.054-3.71-.054s-2.755 0-3.71.054a6.6 6.6 0 0 0-2.184.42 4.6 4.6 0 0 0-2.633 2.632 6.6 6.6 0 0 0-.419 2.186c-.043.962-.056 1.267-.056 3.71s0 2.753.056 3.71c.015.748.156 1.486.419 2.187a4.6 4.6 0 0 0 2.634 2.632 6.6 6.6 0 0 0 2.185.45c.963.042 1.268.055 3.71.055s2.755 0 3.71-.055a6.6 6.6 0 0 0 2.186-.419 4.61 4.61 0 0 0 2.633-2.633c.263-.7.404-1.438.419-2.186.043-.962.056-1.267.056-3.71s0-2.753-.056-3.71a6.6 6.6 0 0 0-.421-2.217m-1.218 9.532a5 5 0 0 1-.311 1.688 2.99 2.99 0 0 1-1.712 1.711 5 5 0 0 1-1.67.311c-.95.044-1.218.055-3.654.055-2.438 0-2.687 0-3.655-.055a5 5 0 0 1-1.669-.311 2.99 2.99 0 0 1-1.719-1.711 5.1 5.1 0 0 1-.311-1.669c-.043-.95-.053-1.218-.053-3.654s0-2.686.053-3.655a5 5 0 0 1 .311-1.687c.305-.789.93-1.41 1.719-1.712a5 5 0 0 1 1.669-.311c.951-.043 1.218-.055 3.655-.055s2.687 0 3.654.055a5 5 0 0 1 1.67.311 3 3 0 0 1 1.712 1.712 5.1 5.1 0 0 1 .311 1.669c.043.951.054 1.218.054 3.655s0 2.698-.043 3.654z">
+                            </path>
+                        </svg></a>
+                    <a href="https://www.facebook.com/flipkart" target="_blank" rel="noopener noreferrer"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#FFFFFF"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M20 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h8.615v-6.96h-2.338v-2.725h2.338v-2c0-2.325 1.42-3.592 3.5-3.592q1.05-.003 2.095.107v2.42h-1.435c-1.128 0-1.348.538-1.348 1.325v1.735h2.697l-.35 2.725h-2.348V21H20a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1">
+                            </path>
+                        </svg></a>
+                    <a href="https://www.youtube.com/flipkart" target="_blank" rel="noopener noreferrer"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#FFFFFF"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M21.593 7.203a2.5 2.5 0 0 0-1.762-1.766C18.265 5.007 12 5 12 5s-6.264-.007-7.831.404a2.56 2.56 0 0 0-1.766 1.778c-.413 1.566-.417 4.814-.417 4.814s-.004 3.264.406 4.814c.23.857.905 1.534 1.763 1.765 1.582.43 7.83.437 7.83.437s6.265.007 7.831-.403a2.52 2.52 0 0 0 1.767-1.763c.414-1.565.417-4.812.417-4.812s.02-3.265-.407-4.831M9.996 15.005l.005-6 5.207 3.005z">
+                            </path>
+                        </svg></a>
+                    <a href="https://x.com/flipkart" target="_blank" rel="noopener noreferrer"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#FFFFFF"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M13.68 10.62 20.24 3h-1.55L13 9.62 8.45 3H3.19l6.88 10.01L3.19 21h1.55l6.01-6.99 4.8 6.99h5.24l-7.13-10.38Zm-2.13 2.47-.7-1-5.54-7.93H7.7l4.47 6.4.7 1 5.82 8.32H16.3z">
+                            </path>
+                        </svg></a>
+                </div>
+                <p class="copy">&copy; 2026 Demo Project. All Rights Reserved.</p>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YUe2LzesAfftltw+PEaao2tjU/QATaW/rOitAq67e0CT0Zi2VVRL0oC4+gAaeBKu" crossorigin="anonymous">
+        </script>
+    <script src="/js/site.js"></script>
+</body>
+
+</html>
