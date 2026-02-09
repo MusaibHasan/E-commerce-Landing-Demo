@@ -3,14 +3,13 @@
 
 <head>
     <script>
-        // Execute immediately to check theme preference
         (function () {
             const theme = localStorage.getItem("theme");
-            if (theme === "dark") {
-                // Apply to <html> immediately to handle background early
-                document.documentElement.classList.add("dark-mode");
+            // 1. Add 'no-transition' to freeze all animations
+            document.documentElement.classList.add("no-transition");
 
-                // Apply to <body> as soon as it exists to avoid disrupting your CSS selectors
+            if (theme === "dark") {
+                document.documentElement.classList.add("dark-mode");
                 const observer = new MutationObserver(() => {
                     if (document.body) {
                         document.body.classList.add("dark-mode");
@@ -19,6 +18,13 @@
                 });
                 observer.observe(document.documentElement, { childList: true });
             }
+
+            // 2. Remove 'no-transition' after a tiny delay to allow regular clicks to animate
+            window.addEventListener("DOMContentLoaded", () => {
+                setTimeout(() => {
+                    document.documentElement.classList.remove("no-transition");
+                }, 50);
+            });
         })();
     </script>
     <meta charset="UTF-8">
@@ -952,5 +958,6 @@
 </body>
 
 </html>
+
 
 
