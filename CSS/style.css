@@ -14,6 +14,16 @@
     --card-bg: #212830;
 }
 
+/* Prevent animations on page load */
+.no-transition * {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -ms-transition: none !important;
+    -o-transition: none !important;
+    transition: none !important;
+    animation: none !important;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -186,8 +196,12 @@ img {
     opacity: 1;
     transform: rotateY(0deg);
     color: #ffffff !important;
-    /* SPEED ADJUSTMENT: 0.4s makes the flip feel energetic */
+}
+
+/* ONLY animate if the trigger class is present */
+.theme-btn.animate-toggle .bx-moon {
     animation: coin-flip-pulse 0.4s ease-out forwards;
+    /* SPEED ADJUSTMENT: 0.4s makes the flip feel energetic */
 }
 
 #themeToggleBtnMobile .bx-moon {
@@ -213,6 +227,10 @@ img {
     opacity: 1;
     color: #95989e !important;
     transform: rotateY(0deg);
+}
+
+/* ONLY animate if the trigger class is present */
+.dark-mode .theme-btn.animate-toggle .bx-sun {
     animation: coin-flip-pulse 0.4s ease-out forwards;
 }
 
