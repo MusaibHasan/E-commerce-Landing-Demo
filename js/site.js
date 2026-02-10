@@ -4,18 +4,26 @@
 
 const themeBtns = document.querySelectorAll('.theme-btn');
 
-// Event: Click listener for toggle buttons
 themeBtns.forEach(btn => {
     btn.addEventListener("click", (e) => {
         e.preventDefault();
 
-        // Toggle class on both for consistency
+        // 1. Add the animation class ONLY on click
+        btn.classList.add('animate-toggle');
+
+        // 2. Toggle the theme
         document.body.classList.toggle("dark-mode");
         document.documentElement.classList.toggle("dark-mode");
 
-        // Save Preference
+        // 3. Save Preference
         const isDark = document.body.classList.contains("dark-mode");
         localStorage.setItem("theme", isDark ? "dark" : "light");
+
+        // 4. Remove the animation class after it finishes (400ms)
+        // This ensures it doesn't stay on the element during a refresh
+        setTimeout(() => {
+            btn.classList.remove('animate-toggle');
+        }, 400);
     });
 });
 
