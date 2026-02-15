@@ -70,19 +70,15 @@
                 border-radius: 10px;
             }
 
-            .form-control {
-                width: 30vw !important;
+            .search-wrapper .form-control {
+                width: 35vw !important;
                 margin-top: 0em !important;
                 margin-bottom: 0em !important;
             }
 
-            body.dark-mode .form-control {
+            body.dark-mode .search-wrapper .form-control {
                 background-color: #212830 !important;
                 color: #e9ecef !important;
-            }
-
-            #searchBtn:hover {
-                background-color: rgb(2, 104, 186) !important;
             }
 
             /* --- HOVER EFFECT: Glow --- */
@@ -197,16 +193,22 @@
                         </li>
                     </ul>
                     <form class="d-flex-column d-lg-flex column-gap-1" role="search">
-                        <input class="form-control me-2 my-3 mt-4 text-truncate" type="search"
-                            placeholder="Search for Products, Brands and More" aria-label="Search">
-                        <button id="searchBtn" class="btn btn-outline-primary text-bg-primary border border-white px-3"
-                            type="submit">Search</button>
-                        <button id="themeToggleBtnDesktop" class="theme-btn btn border-0 d-none d-lg-block ms-2"
-                            type="button" aria-label="Toggle theme" title="Toggle theme">
-                            <i class='bx bx-sun'></i>
-                            <i class='bx bx-moon'></i>
-                        </button>
+                        <div class="search">
+                            <div class="search-wrapper">
+                                <input type="text" class="form-control text-truncate" id="searchInput"
+                                    placeholder="Search for products, brands and more">
+                                <i class="bx bx-x search-clear" id="clearSearchBtn"></i>
+                                <button type="submit" class="search-btn">
+                                    <i class='bx bx-search'></i>
+                                </button>
+                            </div>
+                        </div>
                     </form>
+                    <button id="themeToggleBtnDesktop" class="theme-btn btn border-0 d-none d-lg-block ms-3"
+                        type="button" aria-label="Toggle theme" title="Toggle theme">
+                        <i class='bx bx-sun'></i>
+                        <i class='bx bx-moon'></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -958,6 +960,7 @@
 </body>
 
 </html>
+
 
 
 
