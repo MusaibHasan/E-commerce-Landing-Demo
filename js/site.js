@@ -27,7 +27,6 @@ themeBtns.forEach(btn => {
     });
 });
 
-
 // ===============================
 // 2. MOBILE ACCORDION LOGIC (UPDATED)
 // ===============================
@@ -86,3 +85,37 @@ if (offcanvasEl) {
         });
     });
 }
+
+// ===============================
+// 4. SEARCH INPUT CLEAR BUTTON LOGIC
+// ===============================
+
+document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("searchInput");
+    const clearBtn = document.getElementById("clearSearchBtn");
+
+    if (searchInput && clearBtn) {
+
+        // Function to toggle the button visibility
+        function toggleClearButton() {
+            if (searchInput.value.length > 0) {
+                clearBtn.style.display = "block";
+            } else {
+                clearBtn.style.display = "none";
+            }
+        }
+
+        // 1. Run check immediately on load (Fixes browser autofill issues)
+        toggleClearButton();
+
+        // 2. Run check whenever the user types
+        searchInput.addEventListener("input", toggleClearButton);
+
+        // 3. Clear text on click
+        clearBtn.addEventListener("click", function () {
+            searchInput.value = "";       // Clear text
+            toggleClearButton();          // Hide X button immediately
+            searchInput.focus();          // Keep focus on input
+        });
+    }
+});
