@@ -127,6 +127,15 @@
         background: transparent !important;
         /* No background on hover, just text brightens */
     }
+
+    .search {
+        justify-content: center;
+        margin: 20px auto;
+    }
+
+    .search-btn {
+        color: #294563 !important;
+    }
 }
 
 @media (min-width: 768px) {
@@ -156,14 +165,12 @@
         /* margin: 12px 0; */
     }
 
-    .search {
-        justify-content: center;
-        width: 98vw;
+    .search-wrapper .form-control {
+        width: 100%;
     }
 
-    .search input {
-        margin: 10px 15px;
-        width: 100%;
+    .search-btn {
+        font-size: 1.2rem;
     }
 
     /* .cards {
@@ -225,13 +232,8 @@
         margin-top: -2px;
     } */
 
-    .search {
-        justify-content: center;
-        width: 95vw;
-    }
-
-    .search input {
-        margin: 10px 15px 10px 5px;
+    .search-wrapper .form-control {
+        margin: 0;
     }
 
     .btn {
