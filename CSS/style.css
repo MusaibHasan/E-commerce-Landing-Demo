@@ -148,8 +148,87 @@ img {
     margin-right: 2px;
 }
 
-#searchBtn {
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+/* ===============================
+   SEARCH BOX STYLES
+================================ */
+
+/* The relative container allows absolute positioning of the icon */
+.search-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* Update the input field */
+.search-wrapper .form-control {
+    width: 100%;
+    height: 38px;
+    /* Adjust height as needed */
+    padding: 10px 75px 10px 15px !important;
+    /* Right padding creates space for the icon */
+    border: 1px solid #ccc;
+    /* Or your preferred border color */
+    border-radius: 4px;
+    outline: none;
+    font-size: 0.95rem;
+}
+
+.search-wrapper .search-clear {
+    position: absolute;
+    right: 40px;
+    /* Sits to the left of the 40px search button */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.3rem;
+    color: #999;
+    cursor: pointer;
+    z-index: 10;
+    display: none;
+    /* Hidden by default */
+    padding: 5px !important;
+    /* Increases clickable area */
+    transition: color 0.3s ease;
+}
+
+.search-wrapper .search-clear:hover {
+    color: #333;
+}
+
+/* --- Dark Mode Styles for X --- */
+.dark-mode .search-wrapper .search-clear {
+    color: #b0b8c1;
+}
+
+.dark-mode .search-wrapper .search-clear:hover {
+    color: #fff;
+}
+
+/* The Icon Button */
+.search-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 40px;
+    /* Clickable area width */
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--main-bg-color);
+    font-size: 1.3rem;
+    transition: color 0.3s ease, background-color 0.3s ease !important;
+}
+
+.dark-mode .search-btn {
+    color: #b0b8c1 !important;
+}
+
+.dark-mode .search-btn:hover {
+    color: #fff !important;
 }
 
 /* ===============================
@@ -246,11 +325,11 @@ img {
     }
 }
 
-.form-control::placeholder {
+.search-wrapper .form-control::placeholder {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
 }
 
-.form-control {
+.search-wrapper .form-control {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
 }
 
@@ -555,22 +634,12 @@ body:not(.dark-mode) .theme-icon {
 }
 
 /* Optional: override Bootstrap elements */
-.dark-mode .navbar,
-.dark-mode #searchBtn {
+.dark-mode .navbar {
     background-color: #212830 !important;
-}
-
-.dark-mode #searchBtn {
-    color: #e9ecef !important;
-    border-color: #697385 !important;
 }
 
 .dark-mode .navbar-toggler {
     color: rgb(33 40 48) !important;
-}
-
-.dark-mode #searchBtn:hover {
-    background-color: #0d6efd !important;
 }
 
 .dark-mode main,
@@ -618,13 +687,13 @@ body:not(.dark-mode) .theme-icon {
     color: #e9ecef !important;
 }
 
-.dark-mode .form-control {
+.dark-mode .search-wrapper .form-control {
     background-color: #2a313c !important;
     color: #e9ecef !important;
     border: 1px solid #697385 !important;
 }
 
-.dark-mode .form-control::placeholder {
+.dark-mode .search-wrapper .form-control::placeholder {
     color: #b0b8c1 !important;
 }
 
