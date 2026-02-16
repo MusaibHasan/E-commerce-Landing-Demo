@@ -1,0 +1,271 @@
+/* ===============================
+   MOBILE ACCORDION DROPDOWN
+================================ */
+
+@media (max-width: 991px) {
+
+    /* Disable hover dropdown on mobile */
+    /* .nav-item:hover .nav-dropdown {
+        opacity: 0;
+        visibility: hidden;
+        transform: none;
+    } */
+
+    .offcanvas {
+        box-shadow:
+            8px 0 24px rgba(0, 0, 0, 0.25),
+            2px 0 6px rgba(0, 0, 0, 0.15);
+    }
+
+    .offcanvas .nav-link {
+        padding: 12px 8px !important;
+        color: #294563 !important;
+        font-weight: 500 !important;
+        border-radius: 0;
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+    }
+
+    .offcanvas .nav-item.open .nav-link {
+        justify-content: space-between;
+        border-radius: 0;
+        border-top-left-radius: 10px !important;
+        border-top-right-radius: 10px !important;
+        background-color: #f3f3f3 !important;
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+    }
+
+    body.dark-mode .offcanvas .nav-item.open .nav-link {
+        background-color: #2a313c !important;
+    }
+
+    /* ===============================
+        MENU DIVIDERS
+    ================================ */
+
+    /* .offcanvas .nav-item:not(:last-child) {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    }
+
+    body:not(.dark-mode) .offcanvas .nav-item:not(:last-child) {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+    } */
+
+    /* ===============================
+        END MENU DIVIDERS*/
+
+    .offcanvas .bx-chevron-down {
+        transition: transform 0.25s ease, color 0.3s ease, background-color 0.3s ease;
+        transform: rotate(0deg);
+    }
+
+    /* Base dropdown (collapsed) - UPDATED FOR TREE VIEW */
+    .offcanvas .nav-dropdown {
+        background-color: transparent !important;
+        /* Removes the solid white box */
+        position: static !important;
+        display: grid;
+        grid-template-rows: 0fr;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        box-shadow: none;
+        /* Tree View Styling */
+        border-radius: 0;
+        border-left: 2px solid rgba(0, 0, 0, 0.1);
+        /* The hierarchy line */
+        margin-left: 24px;
+        /* Indent the whole block */
+        margin-top: 0;
+        margin-bottom: 0;
+        transition: grid-template-rows 0.35s ease-out, border-color 0.3s ease, background-color 0.3s ease !important;
+        /* Use ease-out for that "settle" feel */
+    }
+
+    /* Dark Mode Line Adjustment */
+    body.dark-mode .offcanvas .nav-dropdown {
+        border-left: 2px solid rgba(255, 255, 255, 0.1);
+        background-color: transparent !important;
+    }
+
+    /* THE NEW INNER WRAPPER */
+    /* This is required for the grid animation to work on the content */
+    .offcanvas .nav-dropdown .dropdown-inner {
+        overflow: hidden;
+        min-height: 0;
+        /* Critical for grid to calculate 0 height correctly */
+    }
+
+    /* Expanded state */
+    .offcanvas .nav-item.open .nav-dropdown {
+        grid-template-rows: 1fr;
+        /* Triggers your grid animation */
+        margin-bottom: 10px;
+    }
+
+    /* Arrow rotation on open */
+    .offcanvas .nav-item.open .bx-chevron-down {
+        transform: rotate(180deg);
+    }
+
+    /* Better spacing for Tree Links */
+    .offcanvas .nav-dropdown a {
+        padding: 10px 15px;
+        /* Tighter padding for list items */
+        padding-left: 20px;
+        color: #294563 !important;
+        font-weight: 500 !important;
+        transition: color 0.3s ease, background-color 0.3s ease !important;
+    }
+
+    /* Dark Mode Text */
+    body.dark-mode .offcanvas .nav-dropdown a {
+        color: #b0b8c1 !important;
+    }
+
+    body.dark-mode .offcanvas .nav-dropdown a:hover {
+        color: #fff !important;
+        background: transparent !important;
+        /* No background on hover, just text brightens */
+    }
+
+    .search {
+        justify-content: center;
+        margin: 20px auto;
+    }
+
+    .search-btn {
+        color: #294563 !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .copy {
+        font-size: 0.9em;
+        position: absolute;
+        right: 0;
+        top: 20px;
+        padding: 10px 0;
+    }
+
+    /* .card-item {
+        width: 20rem;
+    } */
+}
+
+@media (max-width: 767px) {
+    nav {
+        display: flex;
+        /* flex-direction: column; */
+        flex-wrap: wrap;
+        /* justify-content: space-between; */
+    }
+
+    .logo {
+        justify-content: center;
+        /* margin: 12px 0; */
+    }
+
+    .search-wrapper .form-control {
+        width: 100%;
+    }
+
+    .search-btn {
+        font-size: 1.2rem;
+    }
+
+    /* .cards {
+        overflow-x: auto;
+    } */
+
+    .card-item {
+        /* width: 35vw; */
+        max-height: 240px;
+    }
+
+    .card-item img {
+        max-width: 140px !important;
+        width: 100%;
+        height: auto;
+    }
+
+    .footer-left,
+    .footer-right {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        height: 85%;
+        font-size: 0.825em;
+    }
+
+    .copy {
+        font-size: 0.8em;
+        position: relative;
+        right: 0;
+        top: 0;
+        width: 100%;
+        text-align: end;
+    }
+
+    .social-icons a img {
+        width: 1.2em;
+        height: 1.2em;
+    }
+}
+
+@media (max-width: 575px) {
+    nav {
+        flex-direction: column;
+    }
+
+    .logo {
+        justify-content: center;
+        /* margin: 12px 0; */
+    }
+
+    /* .logo img {
+        width: 85px !important;
+    } */
+
+    /* .MwbhDR {
+        margin-left: 18px;
+        margin-top: -2px;
+    } */
+
+    .search-wrapper .form-control {
+        margin: 0;
+    }
+
+    .btn {
+        margin-right: 5px;
+    }
+
+    .card-item {
+        /* width: 40vw; */
+        max-height: 215px;
+    }
+
+    .card-item img {
+        max-width: 115px !important;
+        width: 100%;
+        height: auto;
+    }
+
+    .card .join {
+        font-size: 1.1em;
+        margin-left: 1.6vh;
+    }
+
+    .my-2 {
+        font-size: 1rem;
+    }
+
+    /* .social-icons a img {
+        width: 0.9em;
+        height: 0.9em;
+    } */
+
+    .flex-all-center {
+        font-size: 0.725em !important;
+    }
+}
