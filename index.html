@@ -91,137 +91,239 @@
                 color: #ffe500 !important;
                 /* Moonlight Yellow */
             }
+
+            .carousel-img {
+                width: 100%;
+                object-fit: cover;
+                object-position: center center !important;
+                aspect-ratio: 211/35;
+            }
         }
     </style>
 </head>
 
 <body>
     <!-- Navbar with Toggler -->
-    <nav class="navbar navbar-expand-lg sticky-top">
-        <div class="container-fluid column-gap-4">
-            <div class="logo d-flex align-items-center ms-lg-3">
-                <div class="F9+fd2 d-flex flex-column justify-content-center" id="logo"><a
-                        href="https://www.flipkart.com/"><img src="/E-commerce-Landing-Demo/img/logo.png" style="width: 80px;" alt="Demo Shop"
-                            title="Demo Shop" class="TVd0Ah"></a>
-                    <a class="MwbhDR fst-italic" href="https://www.flipkart.com/plus">Explore <span
-                            class="s4NJ5L">Plus</span><img style="width: 10px; margin-bottom: 3px;"
-                            src="/E-commerce-Landing-Demo/img/plus_aef861.png"></a>
-                </div>
-                <button class="navbar-toggler border border-0 me-3 order-first" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-
-            <!-- Offcanvas Menu -->
-            <div class="offcanvas offcanvas-start w-75" tabindex="-1" id="offcanvasNavbar"
-                aria-labelledby="offcanvasNavbarLabel">
-                <div class="offcanvas-header">
-                    <h6 class="offcanvas-title" id="offcanvasNavbarLabel">Welcome!</h6>
-
-                    <div class="d-flex align-items-center ms-auto gap-2">
-                        <!-- Dark/Light Mode Toggle -->
-                        <button id="themeToggleBtnMobile" class="theme-btn btn border-0 d-lg-none ms-2" type="button"
-                            aria-label="Toggle theme" title="Toggle theme">
-                            <i class='bx bx-sun'></i>
-                            <i class='bx bx-moon'></i>
-                        </button>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <header class="sticky-top w-100">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <div class="logo d-flex align-items-center ms-lg-3">
+                    <button class="navbar-toggler border border-0 me-2" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="F9+fd2 d-flex flex-column justify-content-center" id="logo"><a
+                            href="https://www.flipkart.com/"><img src="/E-commerce-Landing-Demo/img/logo.png" style="width: 80px;"
+                                alt="Demo Shop" title="Demo Shop" class="TVd0Ah"></a>
+                        <a class="MwbhDR fst-italic" href="https://www.flipkart.com/plus">Explore <span
+                                class="s4NJ5L">Plus</span><img style="width: 10px; margin-bottom: 3px;"
+                                src="/E-commerce-Landing-Demo/img/plus_aef861.png"></a>
                     </div>
                 </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-end flex-grow-1 column-gap-3 pe-lg-5">
-                        <li class="nav-item d-inline-block position-relative">
-                            <a class="nav-link d-flex align-items-center justify-content-between position-relative dropdown-toggle-mobile"
-                                href="" role="button"><span class="d-flex align-items-center"><i
-                                        class='bx bx-info-circle me-2'></i> About</span>
-                                <i class='bx bx-chevron-down'></i>
-                            </a>
-                            <div class="nav-dropdown">
-                                <div class="dropdown-inner">
-                                    <a href="https://corporate.flipkart.net/corporate-home">About Us</a>
-                                    <a href="https://www.flipkart.com/helpcentre?otracker=footer_navlinks">Contact
-                                        Us</a>
-                                    <a href="https://stories.flipkart.com/?otracker=footer_navlinks">Our Story</a>
-                                    <a
-                                        href="https://flipkart.turbohire.co/careerpage/4d757ba0-3d57-448a-b82c-238ed87ac90f">Careers</a>
-                                    <a href="https://www.flipkart.com/corporate-information">Corporate Information</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="nav-item d-inline-block position-relative">
-                            <a class="nav-link d-flex align-items-center justify-content-between position-relative dropdown-toggle-mobile"
-                                href="" role="button">
-                                <span class="d-flex align-items-center"><i class='bx bx-help-circle me-2'></i>
-                                    Help</span>
-                                <i class='bx bx-chevron-down'></i>
-                            </a>
-                            <div class="nav-dropdown">
-                                <div class="dropdown-inner">
-                                    <a href="https://www.flipkart.com/helpcentre?otracker=footer_navlinks">Customer
-                                        Care</a>
-                                    <a
-                                        href="https://www.flipkart.com/helpcentre?catalog=5e5cf25d5100003b003313c8&view=CATALOG">Returns
-                                        & Pickup</a>
-                                    <a
-                                        href="https://www.flipkart.com/helpcentre?catalog=55c9bc6bb000003f002c16ff&view=CATALOG">Delivery</a>
-                                    <a href="https://www.flipkart.com/account/orders?link=home_orders">Track
-                                        Orders</a>
-                                    <a
-                                        href="https://www.flipkart.com/helpcentre?catalog=55c9c8e2b0000023002c1702&view=CATALOG">FAQ</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="nav-item d-inline-block position-relative">
-                            <a class="nav-link d-flex align-items-center justify-content-between position-relative dropdown-toggle-mobile"
-                                href="" role="button"><span class="d-flex align-items-center"><i
-                                        class='bx bx-grid me-2'></i> More</span>
-                                <i class='bx bx-chevron-down'></i>
-                            </a>
-                            <div class="nav-dropdown">
-                                <div class="dropdown-inner">
-                                    <a href="https://www.flipkart.com/viewcart?marketplace=FLIPKART">My Cart</a>
-                                    <a href="https://www.flipkart.com/communication-preferences/push?t=all">Notification
-                                        Preferences</a>
-                                    <a href="https://seller.flipkart.com/sell-online">Sell on Flipkart</a>
-                                    <a
-                                        href="https://advertising.flipkart.com/login?returl=/?otracker=ch_vn_advertise_header">Advertise</a>
-                                    <a href="https://www.flipkart.com/mobile-apps?otracker=ch_vn_mobile_apps">Download
-                                        App</a>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                    <form class="d-flex-column d-lg-flex column-gap-1" role="search">
-                        <div class="search">
-                            <div class="search-wrapper">
-                                <input type="text" class="form-control text-truncate" id="searchInput"
-                                    placeholder="Search for products, brands and more">
-                                <i class="bx bx-x search-clear" id="clearSearchBtn"></i>
-                                <button type="submit" class="search-btn">
-                                    <i class='bx bx-search'></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                    <button id="themeToggleBtnDesktop" class="theme-btn btn border-0 d-none d-lg-block ms-3"
-                        type="button" aria-label="Toggle theme" title="Toggle theme">
+
+                <!-- Dark/Light Mode Toggle for Mobile/Tablet -->
+                <div class="ms-auto d-flex align-items-center">
+                    <button id="themeToggleBtnMobile" class="theme-btn btn border-0 d-lg-none" type="button"
+                        aria-label="Toggle theme" title="Toggle theme">
                         <i class='bx bx-sun'></i>
                         <i class='bx bx-moon'></i>
                     </button>
                 </div>
+
+                <!-- Offcanvas Menu -->
+                <div class="offcanvas offcanvas-start w-75" tabindex="-1" id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <h6 class="offcanvas-title" id="offcanvasNavbarLabel">Welcome!</h6>
+                        <div class="d-flex align-items-center ms-auto gap-2">
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                        </div>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 column-gap-3 pe-lg-5">
+                            <li class="nav-item d-inline-block position-relative">
+                                <a class="nav-link d-flex align-items-center justify-content-between position-relative dropdown-toggle-mobile"
+                                    href="" role="button"><span class="d-flex align-items-center"><i
+                                            class='bx bx-info-circle me-2'></i> About</span>
+                                    <i class='bx bx-chevron-down'></i>
+                                </a>
+                                <div class="nav-dropdown">
+                                    <div class="dropdown-inner">
+                                        <a href="https://corporate.flipkart.net/corporate-home">About Us</a>
+                                        <a href="https://www.flipkart.com/helpcentre?otracker=footer_navlinks">Contact
+                                            Us</a>
+                                        <a href="https://stories.flipkart.com/?otracker=footer_navlinks">Our Story</a>
+                                        <a
+                                            href="https://flipkart.turbohire.co/careerpage/4d757ba0-3d57-448a-b82c-238ed87ac90f">Careers</a>
+                                        <a href="https://www.flipkart.com/corporate-information">Corporate
+                                            Information</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item d-inline-block position-relative">
+                                <a class="nav-link d-flex align-items-center justify-content-between position-relative dropdown-toggle-mobile"
+                                    href="" role="button">
+                                    <span class="d-flex align-items-center"><i class='bx bx-help-circle me-2'></i>
+                                        Help</span>
+                                    <i class='bx bx-chevron-down'></i>
+                                </a>
+                                <div class="nav-dropdown">
+                                    <div class="dropdown-inner">
+                                        <a href="https://www.flipkart.com/helpcentre?otracker=footer_navlinks">Customer
+                                            Care</a>
+                                        <a
+                                            href="https://www.flipkart.com/helpcentre?catalog=5e5cf25d5100003b003313c8&view=CATALOG">Returns
+                                            & Pickup</a>
+                                        <a
+                                            href="https://www.flipkart.com/helpcentre?catalog=55c9bc6bb000003f002c16ff&view=CATALOG">Delivery</a>
+                                        <a href="https://www.flipkart.com/account/orders?link=home_orders">Track
+                                            Orders</a>
+                                        <a
+                                            href="https://www.flipkart.com/helpcentre?catalog=55c9c8e2b0000023002c1702&view=CATALOG">FAQ</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item d-inline-block position-relative">
+                                <a class="nav-link d-flex align-items-center justify-content-between position-relative dropdown-toggle-mobile"
+                                    href="" role="button"><span class="d-flex align-items-center"><i
+                                            class='bx bx-grid me-2'></i> More</span>
+                                    <i class='bx bx-chevron-down'></i>
+                                </a>
+                                <div class="nav-dropdown">
+                                    <div class="dropdown-inner">
+                                        <a href="https://www.flipkart.com/viewcart?marketplace=FLIPKART">My Cart</a>
+                                        <a href="https://www.flipkart.com/communication-preferences/push?t=all">Notification
+                                            Preferences</a>
+                                        <a href="https://seller.flipkart.com/sell-online">Sell on Flipkart</a>
+                                        <a
+                                            href="https://advertising.flipkart.com/login?returl=/?otracker=ch_vn_advertise_header">Advertise</a>
+                                        <a href="https://www.flipkart.com/mobile-apps?otracker=ch_vn_mobile_apps">Download
+                                            App</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <form class="d-none d-lg-flex column-gap-1" role="search">
+                            <div class="search">
+                                <div class="search-wrapper">
+                                    <input type="text" class="form-control text-truncate search-input" id="searchInput"
+                                        placeholder="Search for products, brands and more">
+                                    <i class="bx bx-x search-clear clear-search-btn" id="clearSearchBtn"></i>
+                                    <button type="submit" class="search-btn">
+                                        <i class='bx bx-search'></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <!-- Dark/Light Mode Toggle for Desktop -->
+                        <button id="themeToggleBtnDesktop" class="theme-btn btn border-0 d-none d-lg-block ms-3"
+                            type="button" aria-label="Toggle theme" title="Toggle theme">
+                            <i class='bx bx-sun'></i>
+                            <i class='bx bx-moon'></i>
+                        </button>
+                    </div>
+                </div>
             </div>
+        </nav>
+
+        <!-- Search Bar for Mobile/Tablet (Visible only on small screens) -->
+        <div class="mobile-search-container d-lg-none px-3 pb-3 pt-1 pt-md-2">
+            <form class="w-100" role="search">
+                <div class="search-wrapper">
+                    <input type="text" class="form-control text-truncate search-input"
+                        placeholder="Search for products, brands and more">
+                    <i class="bx bx-x search-clear clear-search-btn"></i>
+                    <button type="submit" class="search-btn">
+                        <i class='bx bx-search'></i>
+                    </button>
+                </div>
+            </form>
         </div>
-    </nav>
+    </header>
 
     <!-- Main Content -->
     <main>
         <div class="container-fluid pt-3 pb-5">
+            <!-- Carousel -->
+            <!-- <div id="mainCarousel" class="carousel slide carousel-dark" data-bs-ride="carousel">
+
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2"></button>
+                </div>
+
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="3000">
+                        <a href="https://www.flipkart.com/big-bachat-day-feb-25-store" class="d-block w-100">
+                            <div style="border-radius: 16px; overflow: hidden;">
+                                <picture>
+                                    <source media="(min-width: 992px)"
+                                        srcset="https://rukminim1.flixcart.com/fk-p-flap/1620/270/image/34515a3294c8a8f9.jpg?q=80 1x, https://rukminim1.flixcart.com/fk-p-flap/3240/540/image/34515a3294c8a8f9.jpg?q=60 2x, ">
+                                    <source media="(min-width: 768px)"
+                                        srcset="https://rukminim2.flixcart.com/fk-p-flap/1580/770/image/c7e5a491a370b764.jpg?q=80">
+                                    <img src="https://rukminim2.flixcart.com/fk-p-flap/850/400/image/c7e5a491a370b764.jpg?q=70"
+                                        class="d-block w-100 carousel-img" alt="Big Bachat Days">
+                                </picture>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="carousel-item" data-bs-interval="3000">
+                        <a href="LINK_TO_CYCLES" class="d-block w-100">
+                            <div style="border-radius: 16px; overflow: hidden;">
+                                <picture>
+                                    <source media="(min-width: 992px)"
+                                        srcset="https://rukminim1.flixcart.com/fk-p-flap/1620/270/image/3d7827c92a670177.jpg?q=80 1x, https://rukminim1.flixcart.com/fk-p-flap/3240/540/image/3d7827c92a670177.jpg?q=60 2x, ">
+                                    <source media="(min-width: 768px)"
+                                        srcset="https://rukminim2.flixcart.com/fk-p-flap/1580/770/image/ed41a40381351741.png?q=80">
+                                    <img src="https://rukminim2.flixcart.com/fk-p-flap/850/400/image/ed41a40381351741.png?q=70"
+                                        class="d-block w-100 carousel-img" alt="Sports Cycles" loading="lazy">
+                                </picture>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="carousel-item" data-bs-interval="3000">
+                        <a href="LINK_TO_GROCERY" class="d-block w-100">
+                            <div style="border-radius: 16px; overflow: hidden;">
+                                <picture>
+                                    <source media="(min-width: 992px)"
+                                        srcset="https://rukminim1.flixcart.com/fk-p-flap/1620/270/image/86dd5564754e79f3.jpg?q=80 1x, https://rukminim1.flixcart.com/fk-p-flap/3240/540/image/86dd5564754e79f3.jpg?q=60 2x, ">
+                                    <source media="(min-width: 768px)"
+                                        srcset="https://rukminim2.flixcart.com/fk-p-flap/1580/770/image/c759322fa2cf0e25.jpg?q=80">
+                                    <img src="https://rukminim2.flixcart.com/fk-p-flap/850/400/image/c759322fa2cf0e25.jpg?q=70"
+                                        class="d-block w-100 carousel-img" alt="Grocery Store" loading="lazy">
+                                </picture>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <button class="carousel-control-prev rounded-end-1 opacity-75 align-self-center bg-dark h-25"
+                    style="width: 3%; cursor: default;" type="button" data-bs-target="#mainCarousel"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" style="height: 35%;" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next rounded-start-1 opacity-75 align-self-center bg-dark h-25"
+                    style="width: 3%; cursor: default;" type="button" data-bs-target="#mainCarousel"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" style="height: 35%;" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div> -->
+
+            <!-- <br> -->
+
             <div id="carouselExample1" class="carousel carousel-dark slide px-1 d-md-none d-lg-none"
                 data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="3000">
-                        <a class="_3n8fna1co _3n8fna10j _3n8fnaod _3n8fna1 _3n8fnac7 _1i2djtb9 _1i2djtl6 _1i2djtix _1i2djte9 _1i2djtfr"
+                        <a class="_3n8fna1co _3n8fna10j _3n8fnaod _3n8fna1 _3n8fnac7 _1i2djtb9 _1i2djtl6 _1i2djtix _1i2djte9 _1i2djtfr d-block w-100"
                             href="https://www.flipkart.com/feb-2025-big-bachat-days-at-store?ctx=eyJjYXJkQ29udGV4dCI6eyJhdHRyaWJ1dGVzIjp7InNvdXJjZUNvbnRlbnRUeXBlIjp7InNpbmdsZVZhbHVlQXR0cmlidXRlIjp7ImtleSI6InNvdXJjZUNvbnRlbnRUeXBlIiwiaW5mZXJlbmNlVHlwZSI6IlNDVCIsInZhbHVlIjoiSUFEIiwidmFsdWVUeXBlIjoiU0lOR0xFX1ZBTFVFRCJ9fX19fQ%3D%3D&nnc=UWUR1DDYSQ3S_IAD&pageUID=1743628906118"
                             style="align-items: stretch; border-width: 0px; box-sizing: border-box; display: flex; flex-basis: auto; flex-direction: column; flex-shrink: 0; min-height: 0px; min-width: 0px; position: relative; z-index: 0; border-radius: 16px; overflow: hidden; clip-path: path(&quot;M 702.4 0 c 15.0849 0 22.6274 0 27.3137 4.6863 a 16 16 0 0 1 0 0 c 4.6863 4.6863 4.6863 12.2288 4.6863 27.3137 L 734.4 326.238 c 0 15.0849 0 22.6274 -4.6863 27.3137 a 16 16 0 0 1 0 0 c -4.6863 4.6863 -12.2288 4.6863 -27.3137 4.6863 L 32 358.238 c -15.0849 0 -22.6274 0 -27.3137 -4.6863 a 16 16 0 0 1 0 0 c -4.6863 -4.6863 -4.6863 -12.2288 -4.6863 -27.3137 L 0 32 c 0 -15.0849 0 -22.6274 4.6863 -27.3137 a 16 16 0 0 1 0 0 c 4.6863 -4.6863 12.2288 -4.6863 27.3137 -4.6863 Z&quot;);">
                             <div class="zlQd20 "
@@ -233,19 +335,19 @@
                                     <source
                                         srcset="https://rukminim2.flixcart.com/fk-p-flap/990/480/image/c7e5a491a370b764.jpg?q=80 1x, https://rukminim2.flixcart.com/fk-p-flap/1980/960/image/c7e5a491a370b764.jpg?q=60 2x, "
                                         media="(min-width: 768px) and (max-width: 1191px)"><img loading="eager"
-                                        alt="Image"
+                                        alt="Image" class="d-block w-100 carousel-img"
                                         srcset="https://rukminim2.flixcart.com/fk-p-flap/480/230/image/c7e5a491a370b764.jpg?q=80 1x, https://rukminim2.flixcart.com/fk-p-flap/960/460/image/c7e5a491a370b764.jpg?q=60 2x, "
                                         src="https://rukminim2.flixcart.com/fk-p-flap/480/230/image/c7e5a491a370b764.jpg?q=90"
                                         style="width: 100%; margin: auto; display: block; object-fit: cover; opacity: 1; aspect-ratio: 41 / 20;">
                                 </picture><img
                                     src="https://rukminim2.flixcart.com/fk-p-flap/480/230/image/c7e5a491a370b764.jpg?q=20"
-                                    loading="eager" alt="Slide 1"
+                                    loading="eager" alt="Slide 1" class="d-block w-100 carousel-img"
                                     style="width: 100%; margin: auto; display: block; position: absolute; inset: 0px; padding: inherit; object-fit: cover; opacity: 0; aspect-ratio: 41 / 20;">
                             </div>
                         </a>
                     </div>
                     <div class="carousel-item" data-bs-interval="3000">
-                        <a class="_3n8fna1co _3n8fna10j _3n8fnaod _3n8fna1 _3n8fnac7 _1i2djtb9 _1i2djtl6 _1i2djtix _1i2djte9 _1i2djtfr"
+                        <a class="_3n8fna1co _3n8fna10j _3n8fnaod _3n8fna1 _3n8fnac7 _1i2djtb9 _1i2djtl6 _1i2djtix _1i2djte9 _1i2djtfr d-block w-100"
                             href="https://www.flipkart.com/sports/cycling/cycles/adult-cycles/pr?sid=abc%2Culv%2Cixt%2Ci5v&p%5B%5D=facets.rating%255B%255D%3D3%25E2%2598%2585%2B%2526%2Babove&p%5B%5D=facets.discount_range_v1%255B%255D%3D40%2525%2Bor%2Bmore&ctx=eyJjYXJkQ29udGV4dCI6eyJhdHRyaWJ1dGVzIjp7InNvdXJjZUNvbnRlbnRUeXBlIjp7InNpbmdsZVZhbHVlQXR0cmlidXRlIjp7ImtleSI6InNvdXJjZUNvbnRlbnRUeXBlIiwiaW5mZXJlbmNlVHlwZSI6IlNDVCIsInZhbHVlIjoiSUFEIiwidmFsdWVUeXBlIjoiU0lOR0xFX1ZBTFVFRCJ9fX19fQ%3D%3D&nnc=54DBC07S5CD1_IAD&pageUID=1743632068294"
                             style="align-items: stretch; border-width: 0px; box-sizing: border-box; display: flex; flex-basis: auto; flex-direction: column; flex-shrink: 0; min-height: 0px; min-width: 0px; position: relative; z-index: 0; border-radius: 16px; overflow: hidden; clip-path: path(&quot;M 702.4 0 c 15.0849 0 22.6274 0 27.3137 4.6863 a 16 16 0 0 1 0 0 c 4.6863 4.6863 4.6863 12.2288 4.6863 27.3137 L 734.4 326.238 c 0 15.0849 0 22.6274 -4.6863 27.3137 a 16 16 0 0 1 0 0 c -4.6863 4.6863 -12.2288 4.6863 -27.3137 4.6863 L 32 358.238 c -15.0849 0 -22.6274 0 -27.3137 -4.6863 a 16 16 0 0 1 0 0 c -4.6863 -4.6863 -4.6863 -12.2288 -4.6863 -27.3137 L 0 32 c 0 -15.0849 0 -22.6274 4.6863 -27.3137 a 16 16 0 0 1 0 0 c 4.6863 -4.6863 12.2288 -4.6863 27.3137 -4.6863 Z&quot;);">
                             <div class="zlQd20 "
@@ -257,19 +359,19 @@
                                     <source
                                         srcset="https://rukminim2.flixcart.com/fk-p-flap/990/480/image/ed41a40381351741.png?q=80 1x, https://rukminim2.flixcart.com/fk-p-flap/1980/960/image/ed41a40381351741.png?q=60 2x, "
                                         media="(min-width: 768px) and (max-width: 1191px)"><img loading="lazy"
-                                        alt="Image"
+                                        alt="Image" class="d-block w-100 carousel-img"
                                         srcset="https://rukminim2.flixcart.com/fk-p-flap/480/230/image/ed41a40381351741.png?q=80 1x, https://rukminim2.flixcart.com/fk-p-flap/960/460/image/ed41a40381351741.png?q=60 2x, "
                                         src="https://rukminim2.flixcart.com/fk-p-flap/480/230/image/ed41a40381351741.png?q=90"
                                         style="width: 100%; margin: auto; display: block; object-fit: cover; opacity: 1; aspect-ratio: 41 / 20;">
                                 </picture><img
                                     src="https://rukminim2.flixcart.com/fk-p-flap/480/230/image/ed41a40381351741.png?q=20"
-                                    loading="lazy" alt="Slide 2"
+                                    loading="lazy" alt="Slide 2" class="d-block w-100 carousel-img"
                                     style="width: 100%; margin: auto; display: block; position: absolute; inset: 0px; padding: inherit; object-fit: cover; opacity: 0; aspect-ratio: 41 / 20;">
                             </div>
                         </a>
                     </div>
                     <div class="carousel-item" data-bs-interval="3000">
-                        <a class="_3n8fna1co _3n8fna10j _3n8fnaod _3n8fna1 _3n8fnac7 _1i2djtb9 _1i2djtl6 _1i2djtix _1i2djte9 _1i2djtfr"
+                        <a class="_3n8fna1co _3n8fna10j _3n8fnaod _3n8fna1 _3n8fnac7 _1i2djtb9 _1i2djtl6 _1i2djtix _1i2djte9 _1i2djtfr d-block w-100"
                             href="https://www.flipkart.com/grocery-supermart-store?marketplace=GROCERY&param=3231232121876&ctx=eyJjYXJkQ29udGV4dCI6eyJhdHRyaWJ1dGVzIjp7InNvdXJjZUNvbnRlbnRUeXBlIjp7InNpbmdsZVZhbHVlQXR0cmlidXRlIjp7ImtleSI6InNvdXJjZUNvbnRlbnRUeXBlIiwiaW5mZXJlbmNlVHlwZSI6IlNDVCIsInZhbHVlIjoiSUFEIiwidmFsdWVUeXBlIjoiU0lOR0xFX1ZBTFVFRCJ9fX19fQ%3D%3D&nnc=MHXGC6M6CH0F_IAD&pageUID=1743625590896"
                             style="align-items: stretch; border-width: 0px; box-sizing: border-box; display: flex; flex-basis: auto; flex-direction: column; flex-shrink: 0; min-height: 0px; min-width: 0px; position: relative; z-index: 0; border-radius: 16px; overflow: hidden; clip-path: path(&quot;M 699.2 0 c 15.0849 0 22.6274 0 27.3137 4.6863 a 16 16 0 0 1 0 0 c 4.6863 4.6863 4.6863 12.2288 4.6863 27.3137 L 731.2 324.675 c 0 15.0849 0 22.6274 -4.6863 27.3137 a 16 16 0 0 1 0 0 c -4.6863 4.6863 -12.2288 4.6863 -27.3137 4.6863 L 32 356.675 c -15.0849 0 -22.6274 0 -27.3137 -4.6863 a 16 16 0 0 1 0 0 c -4.6863 -4.6863 -4.6863 -12.2288 -4.6863 -27.3137 L 0 32 c 0 -15.0849 0 -22.6274 4.6863 -27.3137 a 16 16 0 0 1 0 0 c 4.6863 -4.6863 12.2288 -4.6863 27.3137 -4.6863 Z&quot;);">
                             <div class="zlQd20 "
@@ -281,13 +383,13 @@
                                     <source
                                         srcset="https://rukminim2.flixcart.com/fk-p-flap/990/480/image/c759322fa2cf0e25.jpg?q=80 1x, https://rukminim2.flixcart.com/fk-p-flap/1980/960/image/c759322fa2cf0e25.jpg?q=60 2x, "
                                         media="(min-width: 768px) and (max-width: 1191px)"><img loading="lazy"
-                                        alt="Image"
+                                        alt="Image" class="d-block w-100 carousel-img"
                                         srcset="https://rukminim2.flixcart.com/fk-p-flap/480/230/image/c759322fa2cf0e25.jpg?q=80 1x, https://rukminim2.flixcart.com/fk-p-flap/960/460/image/c759322fa2cf0e25.jpg?q=60 2x, "
                                         src="https://rukminim2.flixcart.com/fk-p-flap/480/230/image/c759322fa2cf0e25.jpg?q=90"
                                         style="width: 100%; margin: auto; display: block; object-fit: cover; opacity: 1; aspect-ratio: 41 / 20;">
                                 </picture><img
                                     src="https://rukminim2.flixcart.com/fk-p-flap/480/230/image/c759322fa2cf0e25.jpg?q=20"
-                                    loading="lazy" alt="Slide 3"
+                                    loading="lazy" alt="Slide 3" class="d-block w-100 carousel-img"
                                     style="width: 100%; margin: auto; display: block; position: absolute; inset: 0px; padding: inherit; object-fit: cover; opacity: 0; aspect-ratio: 41 / 20;">
                             </div>
                         </a>
@@ -307,7 +409,7 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="3000">
-                        <a class="_3n8fna1co _3n8fna10j _3n8fnaod _3n8fna1 _3n8fnac7 _1i2djtb9 _1i2djtl6 _1i2djtix _1i2djte9 _1i2djtfr"
+                        <a class="_3n8fna1co _3n8fna10j _3n8fnaod _3n8fna1 _3n8fnac7 _1i2djtb9 _1i2djtl6 _1i2djtix _1i2djte9 _1i2djtfr d-block w-100"
                             href="https://www.flipkart.com/feb-2025-big-bachat-days-at-store?ctx=eyJjYXJkQ29udGV4dCI6eyJhdHRyaWJ1dGVzIjp7InNvdXJjZUNvbnRlbnRUeXBlIjp7InNpbmdsZVZhbHVlQXR0cmlidXRlIjp7ImtleSI6InNvdXJjZUNvbnRlbnRUeXBlIiwiaW5mZXJlbmNlVHlwZSI6IlNDVCIsInZhbHVlIjoiSUFEIiwidmFsdWVUeXBlIjoiU0lOR0xFX1ZBTFVFRCJ9fX19fQ%3D%3D&nnc=UWUR1DDYSQ3S_IAD&pageUID=1743627138238"
                             style="align-items: stretch; border-width: 0px; box-sizing: border-box; display: flex; flex-basis: auto; flex-direction: column; flex-shrink: 0; min-height: 0px; min-width: 0px; position: relative; z-index: 0; border-radius: 16px; overflow: hidden; clip-path: path(&quot;M 888 0 c 15.0849 0 22.6274 0 27.3137 4.6863 a 16 16 0 0 1 0 0 c 4.6863 4.6863 4.6863 12.2288 4.6863 27.3137 L 920 416.775 c 0 15.0849 0 22.6274 -4.6863 27.3137 a 16 16 0 0 1 0 0 c -4.6863 4.6863 -12.2288 4.6863 -27.3137 4.6863 L 32 448.775 c -15.0849 0 -22.6274 0 -27.3137 -4.6863 a 16 16 0 0 1 0 0 c -4.6863 -4.6863 -4.6863 -12.2288 -4.6863 -27.3137 L 0 32 c 0 -15.0849 0 -22.6274 4.6863 -27.3137 a 16 16 0 0 1 0 0 c 4.6863 -4.6863 12.2288 -4.6863 27.3137 -4.6863 Z&quot;);">
                             <div class="zlQd20 "
@@ -325,13 +427,13 @@
                                         src="https://rukminim2.flixcart.com/fk-p-flap/1010/490/image/c7e5a491a370b764.jpg?q=90">
                                 </picture><img
                                     src="https://rukminim2.flixcart.com/fk-p-flap/1010/490/image/c7e5a491a370b764.jpg?q=20"
-                                    loading="eager" alt="Slide 1"
+                                    loading="eager" alt="Slide 1" class="d-block w-100 carousel-img"
                                     style="width: 100%; margin: auto; display: block; position: absolute; inset: 0px; padding: inherit; object-fit: cover; opacity: 0; aspect-ratio: 41 / 20;">
                             </div>
                         </a>
                     </div>
                     <div class="carousel-item" data-bs-interval="3000">
-                        <a class="_3n8fna1co _3n8fna10j _3n8fnaod _3n8fna1 _3n8fnac7 _1i2djtb9 _1i2djtl6 _1i2djtix _1i2djte9 _1i2djtfr"
+                        <a class="_3n8fna1co _3n8fna10j _3n8fnaod _3n8fna1 _3n8fnac7 _1i2djtb9 _1i2djtl6 _1i2djtix _1i2djte9 _1i2djtfr d-block w-100"
                             href="https://www.flipkart.com/j9e/abm/c54/~cs-4c9t6a0d2q/pr?sid=j9e%2Cabm%2Cc54&collection-tab-name=Top+50+Deals+on+ACs&pageCriteria=default&param=87512&ctx=eyJjYXJkQ29udGV4dCI6eyJhdHRyaWJ1dGVzIjp7InNvdXJjZUNvbnRlbnRUeXBlIjp7InNpbmdsZVZhbHVlQXR0cmlidXRlIjp7ImtleSI6InNvdXJjZUNvbnRlbnRUeXBlIiwiaW5mZXJlbmNlVHlwZSI6IlNDVCIsInZhbHVlIjoiSUFEIiwidmFsdWVUeXBlIjoiU0lOR0xFX1ZBTFVFRCJ9fX19fQ%3D%3D&nnc=G2IXKRW4IMTV_IAD&pageUID=1743628227752"
                             style="align-items: stretch; border-width: 0px; box-sizing: border-box; display: flex; flex-basis: auto; flex-direction: column; flex-shrink: 0; min-height: 0px; min-width: 0px; position: relative; z-index: 0; border-radius: 16px; overflow: hidden; clip-path: path(&quot;M 888 0 c 15.0849 0 22.6274 0 27.3137 4.6863 a 16 16 0 0 1 0 0 c 4.6863 4.6863 4.6863 12.2288 4.6863 27.3137 L 920 416.775 c 0 15.0849 0 22.6274 -4.6863 27.3137 a 16 16 0 0 1 0 0 c -4.6863 4.6863 -12.2288 4.6863 -27.3137 4.6863 L 32 448.775 c -15.0849 0 -22.6274 0 -27.3137 -4.6863 a 16 16 0 0 1 0 0 c -4.6863 -4.6863 -4.6863 -12.2288 -4.6863 -27.3137 L 0 32 c 0 -15.0849 0 -22.6274 4.6863 -27.3137 a 16 16 0 0 1 0 0 c 4.6863 -4.6863 12.2288 -4.6863 27.3137 -4.6863 Z&quot;);">
                             <div class="zlQd20 "
@@ -349,13 +451,13 @@
                                         src="https://rukminim2.flixcart.com/fk-p-flap/1010/490/image/2f651f6ebaee318f.jpg?q=90">
                                 </picture><img
                                     src="https://rukminim2.flixcart.com/fk-p-flap/1010/490/image/2f651f6ebaee318f.jpg?q=20"
-                                    loading="lazy" alt="Slide 2"
+                                    loading="lazy" alt="Slide 2" class="d-block w-100 carousel-img"
                                     style="width: 100%; margin: auto; display: block; position: absolute; inset: 0px; padding: inherit; object-fit: cover; opacity: 0; aspect-ratio: 41 / 20;">
                             </div>
                         </a>
                     </div>
                     <div class="carousel-item" data-bs-interval="3000">
-                        <a class="_3n8fna1co _3n8fna10j _3n8fnaod _3n8fna1 _3n8fnac7 _1i2djtb9 _1i2djtl6 _1i2djtix _1i2djte9 _1i2djtfr"
+                        <a class="_3n8fna1co _3n8fna10j _3n8fnaod _3n8fna1 _3n8fnac7 _1i2djtb9 _1i2djtl6 _1i2djtix _1i2djte9 _1i2djtfr d-block w-100"
                             href="https://www.flipkart.com/6bo/b5g/~cs-d0tyj5ev71/pr?sid=6bo%2Cb5g&collection-tab-name=Chromebook_Mar_2025&pageCriteria=BlueAndMall&ctx=eyJjYXJkQ29udGV4dCI6eyJhdHRyaWJ1dGVzIjp7InNvdXJjZUNvbnRlbnRUeXBlIjp7InNpbmdsZVZhbHVlQXR0cmlidXRlIjp7ImtleSI6InNvdXJjZUNvbnRlbnRUeXBlIiwiaW5mZXJlbmNlVHlwZSI6IlNDVCIsInZhbHVlIjoiQUQiLCJ2YWx1ZVR5cGUiOiJTSU5HTEVfVkFMVUVEIn19fX19&nnc=QV8LNW82M66L_AD&pageUID=1743628325242"
                             style="align-items: stretch; border-width: 0px; box-sizing: border-box; display: flex; flex-basis: auto; flex-direction: column; flex-shrink: 0; min-height: 0px; min-width: 0px; position: relative; z-index: 0; border-radius: 16px; overflow: hidden; clip-path: path(&quot;M 888 0 c 15.0849 0 22.6274 0 27.3137 4.6863 a 16 16 0 0 1 0 0 c 4.6863 4.6863 4.6863 12.2288 4.6863 27.3137 L 920 416.775 c 0 15.0849 0 22.6274 -4.6863 27.3137 a 16 16 0 0 1 0 0 c -4.6863 4.6863 -12.2288 4.6863 -27.3137 4.6863 L 32 448.775 c -15.0849 0 -22.6274 0 -27.3137 -4.6863 a 16 16 0 0 1 0 0 c -4.6863 -4.6863 -4.6863 -12.2288 -4.6863 -27.3137 L 0 32 c 0 -15.0849 0 -22.6274 4.6863 -27.3137 a 16 16 0 0 1 0 0 c 4.6863 -4.6863 12.2288 -4.6863 27.3137 -4.6863 Z&quot;);">
                             <div class="zlQd20 "
@@ -373,7 +475,7 @@
                                         src="https://rukminim2.flixcart.com/fk-p-flap/1010/490/image/ad699ac3671af6e3.jpeg?q=90">
                                 </picture><img
                                     src="https://rukminim2.flixcart.com/fk-p-flap/1010/490/image/ad699ac3671af6e3.jpeg?q=20"
-                                    loading="lazy" alt="Slide 3"
+                                    loading="lazy" alt="Slide 3" class="d-block w-100 carousel-img"
                                     style="width: 100%; margin: auto; display: block; position: absolute; inset: 0px; padding: inherit; object-fit: cover; opacity: 0; aspect-ratio: 41 / 20;">
                             </div>
                         </a>
@@ -404,7 +506,7 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="3000">
-                        <a class="_3n8fna1co _3n8fna10j _3n8fnaod _3n8fna1 _3n8fnac7 _1i2djtb9 _9nihix1c"
+                        <a class="_3n8fna1co _3n8fna10j _3n8fnaod _3n8fna1 _3n8fnac7 _1i2djtb9 _9nihix1c d-block w-100"
                             href="https://www.flipkart.com/big-bachat-day-feb-25-store"
                             style="align-items: stretch; border-width: 0px; box-sizing: border-box; display: flex; flex-direction: column; min-height: 0px; min-width: 0px; position: relative; z-index: 0;">
                             <div class="zlQd20 "
@@ -416,19 +518,19 @@
                                     <source
                                         srcset="https://rukminim1.flixcart.com/fk-p-flap/1010/170/image/34515a3294c8a8f9.jpg?q=80 1x, https://rukminim1.flixcart.com/fk-p-flap/2020/340/image/34515a3294c8a8f9.jpg?q=60 2x, "
                                         media="(min-width: 768px) and (max-width: 1191px)"><img loading="eager"
-                                        alt="Image"
+                                        alt="Image" class="d-block w-100 carousel-img"
                                         srcset="https://rukminim1.flixcart.com/fk-p-flap/480/80/image/34515a3294c8a8f9.jpg?q=80 1x, https://rukminim1.flixcart.com/fk-p-flap/960/160/image/34515a3294c8a8f9.jpg?q=60 2x, "
                                         style="width: 100%; margin: auto; display: block; object-fit: cover; opacity: 1; aspect-ratio: 211 / 35;"
                                         src="https://rukminim1.flixcart.com/fk-p-flap/1010/170/image/34515a3294c8a8f9.jpg?q=90">
                                 </picture><img
                                     src="https://rukminim1.flixcart.com/fk-p-flap/1010/170/image/34515a3294c8a8f9.jpg?q=20"
-                                    loading="eager" alt="Slide 1"
+                                    loading="eager" alt="Slide 1" class="d-block w-100 carousel-img"
                                     style="width: 100%; margin: auto; display: block; position: absolute; inset: 0px; padding: inherit; object-fit: cover; opacity: 0; aspect-ratio: 211 / 35;">
                             </div>
                         </a>
                     </div>
                     <div class="carousel-item" data-bs-interval="3000">
-                        <a class="_3n8fna1co _3n8fna10j _3n8fnaod _3n8fna1 _3n8fnac7 _1i2djtb9 _9nihix1c"
+                        <a class="_3n8fna1co _3n8fna10j _3n8fnaod _3n8fna1 _3n8fnac7 _1i2djtb9 _9nihix1c d-block w-100"
                             href="https://www.flipkart.com/travel/flights?param=TravelDT-BBDH-HPW-roundtrip"
                             style="align-items: stretch; border-width: 0px; box-sizing: border-box; display: flex; flex-direction: column; min-height: 0px; min-width: 0px; position: relative; z-index: 0;">
                             <div class="zlQd20 "
@@ -440,19 +542,19 @@
                                     <source
                                         srcset="https://rukminim1.flixcart.com/fk-p-flap/1010/170/image/3d7827c92a670177.jpg?q=80 1x, https://rukminim1.flixcart.com/fk-p-flap/2020/340/image/3d7827c92a670177.jpg?q=60 2x, "
                                         media="(min-width: 768px) and (max-width: 1191px)"><img loading="lazy"
-                                        alt="Image"
+                                        alt="Image" class="d-block w-100 carousel-img"
                                         srcset="https://rukminim1.flixcart.com/fk-p-flap/480/80/image/3d7827c92a670177.jpg?q=80 1x, https://rukminim1.flixcart.com/fk-p-flap/960/160/image/3d7827c92a670177.jpg?q=60 2x, "
                                         style="width: 100%; margin: auto; display: block; object-fit: cover; opacity: 1; aspect-ratio: 211 / 35;"
                                         src="https://rukminim1.flixcart.com/fk-p-flap/1010/170/image/3d7827c92a670177.jpg?q=90">
                                 </picture><img
                                     src="https://rukminim1.flixcart.com/fk-p-flap/1010/170/image/3d7827c92a670177.jpg?q=20"
-                                    loading="lazy" alt="Slide 2"
+                                    loading="lazy" alt="Slide 2" class="d-block w-100 carousel-img"
                                     style="width: 100%; margin: auto; display: block; position: absolute; inset: 0px; padding: inherit; object-fit: cover; opacity: 0; aspect-ratio: 211 / 35;">
                             </div>
                         </a>
                     </div>
                     <div class="carousel-item" data-bs-interval="3000">
-                        <a class="_3n8fna1co _3n8fna10j _3n8fnaod _3n8fna1 _3n8fnac7 _1i2djtb9 _9nihix1c"
+                        <a class="_3n8fna1co _3n8fna10j _3n8fnaod _3n8fna1 _3n8fnac7 _1i2djtb9 _9nihix1c d-block w-100"
                             href="https://www.flipkart.com/travel/flights?param=TravelDT-HPW-Domestic-FLYFK-booknow-grabit"
                             style="align-items: stretch; border-width: 0px; box-sizing: border-box; display: flex; flex-direction: column; min-height: 0px; min-width: 0px; position: relative; z-index: 0;">
                             <div class="zlQd20 "
@@ -464,13 +566,13 @@
                                     <source
                                         srcset="https://rukminim1.flixcart.com/fk-p-flap/1010/170/image/86dd5564754e79f3.jpg?q=80 1x, https://rukminim1.flixcart.com/fk-p-flap/2020/340/image/86dd5564754e79f3.jpg?q=60 2x, "
                                         media="(min-width: 768px) and (max-width: 1191px)"><img loading="lazy"
-                                        alt="Image"
+                                        alt="Image" class="d-block w-100 carousel-img"
                                         srcset="https://rukminim1.flixcart.com/fk-p-flap/480/80/image/86dd5564754e79f3.jpg?q=80 1x, https://rukminim1.flixcart.com/fk-p-flap/960/160/image/86dd5564754e79f3.jpg?q=60 2x, "
                                         style="width: 100%; margin: auto; display: block; object-fit: cover; opacity: 1; aspect-ratio: 211 / 35;"
                                         src="https://rukminim1.flixcart.com/fk-p-flap/1010/170/image/86dd5564754e79f3.jpg?q=90">
                                 </picture><img
                                     src="https://rukminim1.flixcart.com/fk-p-flap/1010/170/image/86dd5564754e79f3.jpg?q=20"
-                                    loading="lazy" alt="Slide 3"
+                                    loading="lazy" alt="Slide 3" class="d-block w-100 carousel-img"
                                     style="width: 100%; margin: auto; display: block; position: absolute; inset: 0px; padding: inherit; object-fit: cover; opacity: 0; aspect-ratio: 211 / 35;">
                             </div>
                         </a>
@@ -952,6 +1054,11 @@
         </footer>
     </main>
 
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" title="Back to Top">
+        <i class="bx bx-arrow-up-stroke"></i>
+    </button>
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YUe2LzesAfftltw+PEaao2tjU/QATaW/rOitAq67e0CT0Zi2VVRL0oC4+gAaeBKu" crossorigin="anonymous">
@@ -960,9 +1067,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
