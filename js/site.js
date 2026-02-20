@@ -87,35 +87,72 @@ if (offcanvasEl) {
 }
 
 // ===============================
-// 4. SEARCH INPUT CLEAR BUTTON LOGIC
+// 4. SEARCH INPUT CLEAR BUTTON LOGIC (Updated for Multiple Bars)
 // ===============================
 
 document.addEventListener("DOMContentLoaded", function () {
-    const searchInput = document.getElementById("searchInput");
-    const clearBtn = document.getElementById("clearSearchBtn");
+    // Find ALL search wrappers on the page
+    const searchWrappers = document.querySelectorAll(".search-wrapper");
 
-    if (searchInput && clearBtn) {
+    searchWrappers.forEach(wrapper => {
+        // Use class instead of ID
+        const searchInput = wrapper.querySelector(".search-input");
+        const clearBtn = wrapper.querySelector(".clear-search-btn");
 
-        // Function to toggle the button visibility
-        function toggleClearButton() {
-            if (searchInput.value.length > 0) {
-                clearBtn.style.display = "block";
-            } else {
-                clearBtn.style.display = "none";
-            }
+        if (searchInput && clearBtn) {
+
+            // Reusable function to toggle X
+            const toggleClearButton = () => {
+                clearBtn.style.display = searchInput.value.length > 0 ? "block" : "none";
+            };
+
+            // 1. Run immediately on load (fixes autofill issue)
+            toggleClearButton();
+
+            // 2. Show/Hide 'X' on typing
+            searchInput.addEventListener("input", toggleClearButton);
+
+            // 3. Clear text on click
+            clearBtn.addEventListener("click", function () {
+                searchInput.value = "";
+                toggleClearButton();
+                searchInput.focus();
+            });
         }
+    });
+});
 
-        // 1. Run check immediately on load (Fixes browser autofill issues)
-        toggleClearButton();
+// ===============================
+// 5. SCROLL EFFECTS (Header & Back to Top)
+// ===============================
+const backToTopBtn = document.getElementById('backToTop');
 
-        // 2. Run check whenever the user types
-        searchInput.addEventListener("input", toggleClearButton);
+window.addEventListener('scroll', function () {
+    const header = document.querySelector('header.sticky-top');
 
-        // 3. Clear text on click
-        clearBtn.addEventListener("click", function () {
-            searchInput.value = "";       // Clear text
-            toggleClearButton();          // Hide X button immediately
-            searchInput.focus();          // Keep focus on input
-        });
+    // 1. Sticky Header Shadow logic
+    if (window.scrollY > 10) {
+        header.classList.add('header-scrolled');
+    } else {
+        header.classList.remove('header-scrolled');
+    }
+
+    // 2. Back to Top Button Visibility logic
+    if (backToTopBtn) {
+        if (window.scrollY > 400) { // Shows button after scrolling 400px
+            backToTopBtn.classList.add('show');
+        } else {
+            backToTopBtn.classList.remove('show');
+        }
     }
 });
+
+// 3. Smooth Scroll to Top Click event
+if (backToTopBtn) {
+    backToTopBtn.addEventListener('click', function () {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
