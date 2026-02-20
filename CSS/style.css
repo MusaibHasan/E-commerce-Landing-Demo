@@ -43,6 +43,47 @@ body::-webkit-scrollbar {
     display: none;
 }
 
+/* ===============================
+   STICKY HEADER REFINEMENT
+================================ */
+
+/* 1. Base Header (No shadow initially) */
+header.sticky-top {
+    /* Ensure the header has a solid background so content doesn't peek through */
+    background-color: var(--main-bg-color);
+    z-index: 1030;
+    /* Ensures it stays above all other elements */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 2. Scrolled State (Shadow appears) */
+header.sticky-top.header-scrolled {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.dark-mode header.sticky-top {
+    background-color: #212830;
+}
+
+/* 3. Dark Mode Scrolled State */
+.dark-mode header.sticky-top.header-scrolled {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Optional: Shrink the mobile search area slightly on scroll */
+header.sticky-top.header-scrolled .mobile-search-container {
+    padding-bottom: 8px !important;
+    transition: padding 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+}
+
+/* Vertical Spacing Tweak */
+.mobile-search-container {
+    /* Slight padding adjustment for a tighter mobile look */
+    padding-top: 4px !important;
+    padding-bottom: 12px !important;
+}
+
 .navbar {
     background-color: var(--main-bg-color) !important;
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
@@ -55,6 +96,7 @@ body::-webkit-scrollbar {
 .navbar-toggler {
     /* border-color: rgba(255, 255, 255, 1) !important; */
     color: var(--main-bg-color) !important;
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease !important;
 }
 
 .navbar-nav {
@@ -283,11 +325,6 @@ img {
     /* SPEED ADJUSTMENT: 0.4s makes the flip feel energetic */
 }
 
-#themeToggleBtnMobile .bx-moon {
-    color: #7f7f7f !important;
-    filter: none;
-}
-
 .theme-btn .bx-sun {
     opacity: 0;
     color: #95989e !important;
@@ -333,6 +370,20 @@ img {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
 }
 
+/* ===============================
+   MOBILE SEARCH CONTAINER
+================================ */
+.mobile-search-container {
+    background-color: var(--main-bg-color);
+    transition: background-color 0.3s ease;
+    margin-top: -1px;
+    /* Prevents any 1px white gap below the navbar */
+}
+
+.dark-mode .mobile-search-container {
+    background-color: #212830 !important;
+}
+
 main {
     /* min-height: calc(100vh - 12vh - 56px); */
     overflow-x: hidden;
@@ -345,6 +396,12 @@ main .container-fluid {
     padding-right: 15px;
     background-color: #f1f2f4;
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+}
+
+.carousel-img {
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 41/20;
 }
 
 .carousel-control-prev:hover,
@@ -505,7 +562,7 @@ footer {
 }
 
 .btn {
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 .lines {
@@ -770,4 +827,54 @@ body:not(.dark-mode) .offcanvas .nav-dropdown {
     /* border-color: #e9ecef !important;
     color: #e9ecef !important; */
     filter: invert(1);
+}
+
+/* ===============================
+   BACK TO TOP BUTTON
+================================ */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--main-bg-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    border: none;
+    cursor: pointer;
+    z-index: 1050;
+    /* Sits above the header */
+
+    /* Hidden state */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+
+    /* Smooth entrance/exit and hover transitions */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Shown state (triggered by JS) */
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+/* Dark Mode adjustment */
+.dark-mode .back-to-top {
+    background-color: #374151;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
