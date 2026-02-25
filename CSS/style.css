@@ -433,8 +433,10 @@ main .container-fluid {
     overflow: clip;
 }
 
+/* Adds a soft, subtle shadow behind the actual product shape */
 .card-item img {
     object-fit: contain;
+    transition: filter 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
 }
 
 /* 2. The Giant Spinner: Sits behind everything and spins */
@@ -498,6 +500,16 @@ main .container-fluid {
     box-shadow: 0 8px 20px 0 rgba(50, 180, 200, 0.4);
     transform: translateY(-2px);
     transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.card-item:hover img {
+    /* Adjust the colors and blur to your liking! */
+    filter: drop-shadow(0px 8px 12px rgba(0, 0, 0, 0.3));
+}
+
+/* For an extra pop in dark mode, you can give it a faint white/blue glow */
+.dark-mode .card-item:hover img {
+    filter: drop-shadow(0px 8px 12px rgba(255, 255, 255, 0.1));
 }
 
 .card-item a {
