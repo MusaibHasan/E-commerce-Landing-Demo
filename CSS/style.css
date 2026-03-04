@@ -14,6 +14,12 @@
     --card-bg: #212830;
 }
 
+/* Ensure the root element is also dark to prevent light-colored edges or flashes */
+html.dark-mode,
+body.dark-mode {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 /* Prevent animations on page load */
 .no-transition * {
     -webkit-transition: none !important;
@@ -71,6 +77,20 @@ header.sticky-top.header-scrolled {
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+/* ===============================
+   MOBILE SEARCH CONTAINER
+================================ */
+.mobile-search-container {
+    background-color: var(--main-bg-color);
+    transition: background-color 0.3s ease;
+    margin-top: -1px;
+    /* Prevents any 1px white gap below the navbar */
+}
+
+.dark-mode .mobile-search-container {
+    background-color: #212830 !important;
+}
+
 /* Optional: Shrink the mobile search area slightly on scroll */
 header.sticky-top.header-scrolled .mobile-search-container {
     padding-bottom: 8px !important;
@@ -89,6 +109,11 @@ header.sticky-top.header-scrolled .mobile-search-container {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
 }
 
+/* Optional: override Bootstrap elements */
+.dark-mode .navbar {
+    background-color: #212830 !important;
+}
+
 .navbar-toggler .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
@@ -99,17 +124,28 @@ header.sticky-top.header-scrolled .mobile-search-container {
     transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease !important;
 }
 
+.dark-mode .navbar-toggler {
+    color: rgb(33 40 48) !important;
+}
+
 .navbar-nav {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+}
+
+.nav-link {
+    transition: background 0.2s ease;
+    border-radius: 4px;
 }
 
 .nav-item {
     position: relative;
 }
 
-.nav-link {
-    transition: background 0.2s ease;
-    border-radius: 4px;
+/* Show dropdown */
+.nav-item:hover .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
 /* Arrow */
@@ -120,6 +156,10 @@ header.sticky-top.header-scrolled .mobile-search-container {
     will-change: transform;
     transition: transform 220ms cubic-bezier(0.4, 0.0, 0.2, 1);
     /* transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.25s ease !important; */
+}
+
+.dark-mode .bx-chevron-down {
+    color: #e9ecef !important;
 }
 
 /* Dropdown */
@@ -136,13 +176,6 @@ header.sticky-top.header-scrolled .mobile-search-container {
     transform: translateY(8px);
     transition: all 0.25s ease;
     z-index: 1000;
-}
-
-/* Show dropdown */
-.nav-item:hover .nav-dropdown {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
 }
 
 /* Dropdown items */
@@ -202,7 +235,6 @@ img {
     align-items: center;
 }
 
-/* Update the input field */
 .search-wrapper .form-control {
     width: 100%;
     height: 38px;
@@ -214,6 +246,24 @@ img {
     border-radius: 4px;
     outline: none;
     font-size: 0.95rem;
+}
+
+.search-wrapper .form-control::placeholder {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+}
+
+.search-wrapper .form-control {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+}
+
+.dark-mode .search-wrapper .form-control {
+    background-color: #2a313c !important;
+    color: #e9ecef !important;
+    border: 1px solid #697385 !important;
+}
+
+.dark-mode .search-wrapper .form-control::placeholder {
+    color: #b0b8c1 !important;
 }
 
 .search-wrapper .search-clear {
@@ -274,7 +324,7 @@ img {
 }
 
 /* ===============================
-   THEME TOGGLE BUTTON (Ringing Bell Effect)
+    THEME TOGGLE BUTTON 
 ================================ */
 
 .theme-btn {
@@ -345,6 +395,11 @@ img {
     transform: rotateY(0deg);
 }
 
+.dark-mode .theme-btn::after {
+    background-color: #f5c542 !important;
+    color: #000;
+}
+
 /* ONLY animate if the trigger class is present */
 .dark-mode .theme-btn.animate-toggle .bx-sun {
     animation: coin-flip-pulse 0.4s ease-out forwards;
@@ -362,32 +417,14 @@ img {
     }
 }
 
-.search-wrapper .form-control::placeholder {
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
-}
-
-.search-wrapper .form-control {
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
-}
-
-/* ===============================
-   MOBILE SEARCH CONTAINER
-================================ */
-.mobile-search-container {
-    background-color: var(--main-bg-color);
-    transition: background-color 0.3s ease;
-    margin-top: -1px;
-    /* Prevents any 1px white gap below the navbar */
-}
-
-.dark-mode .mobile-search-container {
-    background-color: #212830 !important;
-}
-
 main {
     /* min-height: calc(100vh - 12vh - 56px); */
     overflow-x: hidden;
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.dark-mode main {
+    background-color: #172337 !important;
 }
 
 main .container-fluid {
@@ -396,6 +433,10 @@ main .container-fluid {
     padding-right: 15px;
     background-color: #f1f2f4;
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+}
+
+.dark-mode main .container-fluid {
+    background-color: #151b23 !important;
 }
 
 .carousel-img {
@@ -415,8 +456,20 @@ main .container-fluid {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
 }
 
+.dark-mode .card {
+    background-color: #212830 !important;
+    color: #e9ecef !important;
+}
+
 .cards {
     scroll-behavior: smooth;
+}
+
+.card .join {
+    font-family: "Lato", serif;
+    /* margin-left: 2vh; */
+    /* color: black; */
+    letter-spacing: 1px;
 }
 
 /* ===============================
@@ -516,11 +569,115 @@ main .container-fluid {
     color: black;
 }
 
-.card .join {
-    font-family: "Lato", serif;
-    /* margin-left: 2vh; */
-    /* color: black; */
-    letter-spacing: 1px;
+/* ===============================
+   PREMIUM CARD TEXT ANIMATIONS
+================================ */
+
+/* 1. Base states for the span elements */
+.text-success span,
+.text-danger span {
+    /* display: inline-block is required for CSS transforms to work on inline text */
+    display: inline-block;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* 2. Style the "40% off" as a modern badge */
+.card-item .text-success span {
+    background: #e6f4ea;
+    /* Soft green backdrop */
+    color: #1e8e3e;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.9em;
+    font-weight: 700;
+}
+
+/* Dark mode adjustment for the green badge */
+.dark-mode .card-item .text-success span {
+    background: rgba(30, 142, 62, 0.2);
+    color: #81c995;
+}
+
+/* 2. Hover state for Dark Mode Badge */
+.dark-mode .card-item:hover .text-success span {
+    background: rgba(34, 197, 94, 0.3);
+    /* Becomes slightly more opaque */
+    color: #ffffff;
+    /* Turns white for maximum readability on hover */
+    box-shadow: 0 0 15px rgba(74, 222, 128, 0.2);
+    /* A soft, sophisticated glow */
+    border-color: rgba(34, 197, 94, 0.5);
+}
+
+/* Bright state ONLY on hover */
+.dark-mode .card-item:hover .text-danger span {
+    color: #ff6b6b;
+    /* Full vibrant red */
+}
+
+/* 3. Hide the "Order Now!" initially, making it look clean */
+.card-item .text-danger {
+    font-size: 14px;
+    overflow: hidden;
+    /* Keeps the layout from shifting when the text moves */
+}
+
+/* The "Order Now" text waits 0.1s before sliding up */
+.card-item .text-danger span {
+    opacity: 0.4;
+    transform: translateY(10px);
+    color: #d93025;
+    font-weight: 600;
+    transition: all 0.3s ease 0.1s;
+    /* The '0.1s' at the end is the delay */
+}
+
+/* Subtle state when NOT hovered */
+.dark-mode .card-item .text-danger span {
+    color: rgba(255, 107, 107, 0.6);
+    /* Faded red */
+}
+
+/* 4. THE MAGIC: Animate when the user hovers over the card */
+.card-item:hover .text-success span {
+    transform: scale(1.08);
+    /* A satisfying little pop */
+    box-shadow: 0 4px 8px rgba(30, 142, 62, 0.15);
+    background: #d3eadb;
+}
+
+.card-item:hover .text-danger span {
+    opacity: 1;
+    transform: translateY(0);
+    /* Smoothly slides up into place */
+}
+
+/* .dark-mode .card-item {
+    background-color: #2a313c !important;
+} */
+
+.dark-mode .card-item:hover {
+    /* Changed opacity from 0.4 to 0.2 for a subtle, calm glow */
+    box-shadow: 0 0 25px rgba(129, 201, 149, 0.2);
+    /* Soft Sage glow */
+    transform: translateY(-2px);
+}
+
+/* Update the gradient image, not the background shorthand */
+.dark-mode .card-item::before {
+    background-image: conic-gradient(from 0deg,
+            transparent 0deg,
+            #81c995 90deg,
+            /* Bright Cyan for pop */
+            transparent 180deg);
+}
+
+.dark-mode .card-item::after {
+    background-color: #212830 !important;
+}
+
+.dark-mode .card-item a {
+    color: #e9ecef !important;
 }
 
 .bxl {
@@ -564,6 +721,11 @@ footer {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
+.dark-mode footer {
+    background-color: #172337 !important;
+    border-top: #2c323a solid 1px;
+}
+
 .copy {
     color: #999b9f !important;
     position: absolute;
@@ -586,86 +748,6 @@ footer {
 .my-2 {
     /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
     letter-spacing: 1px;
-}
-
-/* ===============================
-   PREMIUM CARD TEXT ANIMATIONS
-================================ */
-
-/* 1. Base states for the span elements */
-.text-success span,
-.text-danger span {
-    /* display: inline-block is required for CSS transforms to work on inline text */
-    display: inline-block;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-/* 2. Style the "40% off" as a modern badge */
-.card-item .text-success span {
-    background: #e6f4ea;
-    /* Soft green backdrop */
-    color: #1e8e3e;
-    padding: 2px 10px;
-    border-radius: 12px;
-    font-size: 0.9em;
-    font-weight: 700;
-}
-
-/* Dark mode adjustment for the green badge */
-.dark-mode .card-item .text-success span {
-    background: rgba(30, 142, 62, 0.2);
-    color: #81c995;
-}
-
-/* 2. Hover state for Dark Mode Badge */
-.dark-mode .card-item:hover .text-success span {
-    background: rgba(34, 197, 94, 0.3);
-    /* Becomes slightly more opaque */
-    color: #ffffff;
-    /* Turns white for maximum readability on hover */
-    box-shadow: 0 0 15px rgba(74, 222, 128, 0.2);
-    /* A soft, sophisticated glow */
-    border-color: rgba(34, 197, 94, 0.5);
-}
-
-/* 3. Hide the "Order Now!" initially, making it look clean */
-.card-item .text-danger {
-    font-size: 14px;
-    /* Keeps the layout from shifting when the text moves */
-    overflow: hidden;
-}
-
-.card-item .text-danger span {
-    opacity: 0.4;
-    transform: translateY(10px);
-    color: #d93025;
-    font-weight: 600;
-}
-
-/* Add an interactive hover effect directly to the text */
-.card-item .text-danger span:hover {
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    cursor: pointer;
-}
-
-/* Dark mode adjustment for red text */
-.dark-mode .card-item .text-danger span {
-    color: #ff6b6b;
-}
-
-/* 4. THE MAGIC: Animate when the user hovers over the card */
-.card-item:hover .text-success span {
-    transform: scale(1.08);
-    /* A satisfying little pop */
-    box-shadow: 0 4px 8px rgba(30, 142, 62, 0.15);
-    background: #d3eadb;
-}
-
-.card-item:hover .text-danger span {
-    opacity: 1;
-    transform: translateY(0);
-    /* Smoothly slides up into place */
 }
 
 /* Override offcanvas animation duration */
@@ -696,101 +778,6 @@ footer {
 /* Optional: Remove default Bootstrap backdrop transition delay */
 .offcanvas-backdrop {
     transition: opacity 0.2s ease-in-out !important;
-}
-
-.theme-icon {
-    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease !important;
-}
-
-.btn-close {
-    /* filter: invert(0); */
-    transition: filter 0.3s ease !important;
-}
-
-/* Ensure the root element is also dark to prevent light-colored edges or flashes */
-html.dark-mode,
-body.dark-mode {
-    background-color: #121212;
-    /* main background */
-    color: #e0e0e0;
-    /* main text color */
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Dark mode → Sun should be warm yellow */
-.dark-mode .theme-icon {
-    color: #f5c542 !important;
-    /* Sun Yellow */
-}
-
-/* Light mode → Moon neutral */
-body:not(.dark-mode) .theme-icon {
-    color: #333 !important;
-    /* Moon Black */
-}
-
-/* Optional: override Bootstrap elements */
-.dark-mode .navbar {
-    background-color: #212830 !important;
-}
-
-.dark-mode .navbar-toggler {
-    color: rgb(33 40 48) !important;
-}
-
-.dark-mode main,
-.dark-mode footer {
-    background-color: #172337 !important;
-}
-
-.dark-mode main .container-fluid {
-    background-color: #151b23 !important;
-}
-
-.dark-mode footer {
-    border-top: #2c323a solid 1px;
-}
-
-.dark-mode .card {
-    background-color: #212830 !important;
-    color: #e9ecef !important;
-}
-
-/* .dark-mode .card-item {
-    background-color: #2a313c !important;
-} */
-
-.dark-mode .card-item:hover {
-    /* Changed opacity from 0.4 to 0.2 for a subtle, calm glow */
-    box-shadow: 0 0 25px rgba(0, 210, 255, 0.2);
-    transform: translateY(-2px);
-}
-
-/* Update the gradient image, not the background shorthand */
-.dark-mode .card-item::before {
-    background-image: conic-gradient(from 0deg,
-            transparent 0deg,
-            #00d2ff 90deg,
-            /* Bright Cyan for pop */
-            transparent 180deg);
-}
-
-.dark-mode .card-item::after {
-    background-color: #212830 !important;
-}
-
-.dark-mode .card-item a {
-    color: #e9ecef !important;
-}
-
-.dark-mode .search-wrapper .form-control {
-    background-color: #2a313c !important;
-    color: #e9ecef !important;
-    border: 1px solid #697385 !important;
-}
-
-.dark-mode .search-wrapper .form-control::placeholder {
-    color: #b0b8c1 !important;
 }
 
 .dark-mode .offcanvas {
@@ -837,10 +824,6 @@ body:not(.dark-mode) .theme-icon {
     pointer-events: none;
 }
 
-body:not(.dark-mode) .offcanvas .nav-dropdown {
-    background: rgba(0, 0, 0, 0.04);
-}
-
 .dark-mode .offcanvas .nav-dropdown {
     background-color: #212830 !important;
 }
@@ -853,13 +836,25 @@ body:not(.dark-mode) .offcanvas .nav-dropdown {
     background-color: #212830 !important;
 }
 
-.dark-mode .bx-chevron-down {
-    color: #e9ecef !important;
+.theme-icon {
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease !important;
 }
 
-.dark-mode .theme-btn::after {
-    background-color: #f5c542 !important;
-    color: #000;
+/* Dark mode → Sun should be warm yellow */
+.dark-mode .theme-icon {
+    color: #f5c542 !important;
+    /* Sun Yellow */
+}
+
+/* Light mode → Moon neutral */
+body:not(.dark-mode) .theme-icon {
+    color: #333 !important;
+    /* Moon Black */
+}
+
+.btn-close {
+    /* filter: invert(0); */
+    transition: filter 0.3s ease !important;
 }
 
 .dark-mode .btn-close {
