@@ -34,7 +34,7 @@
         transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
     }
 
-    body.dark-mode .offcanvas .nav-item.open .nav-link {
+    .dark-mode .offcanvas .nav-item.open .nav-link {
         background-color: #2a313c !important;
     }
 
@@ -50,13 +50,6 @@
         border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
     } */
 
-    /* ===============================
-        END MENU DIVIDERS*/
-
-    .offcanvas .bx-chevron-down {
-        transition: transform 0.25s ease, color 0.3s ease, background-color 0.3s ease;
-        transform: rotate(0deg);
-    }
 
     /* Base dropdown (collapsed) - UPDATED FOR TREE VIEW */
     .offcanvas .nav-dropdown {
@@ -82,7 +75,7 @@
     }
 
     /* Dark Mode Line Adjustment */
-    body.dark-mode .offcanvas .nav-dropdown {
+    .dark-mode .offcanvas .nav-dropdown {
         border-left: 2px solid rgba(255, 255, 255, 0.1);
         background-color: transparent !important;
     }
@@ -102,11 +95,6 @@
         margin-bottom: 10px;
     }
 
-    /* Arrow rotation on open */
-    .offcanvas .nav-item.open .bx-chevron-down {
-        transform: rotate(180deg);
-    }
-
     /* Better spacing for Tree Links */
     .offcanvas .nav-dropdown a {
         padding: 10px 15px;
@@ -118,14 +106,24 @@
     }
 
     /* Dark Mode Text */
-    body.dark-mode .offcanvas .nav-dropdown a {
+    .dark-mode .offcanvas .nav-dropdown a {
         color: #b0b8c1 !important;
     }
 
-    body.dark-mode .offcanvas .nav-dropdown a:hover {
+    .dark-mode .offcanvas .nav-dropdown a:hover {
         color: #fff !important;
         background: transparent !important;
         /* No background on hover, just text brightens */
+    }
+
+    .offcanvas .bx-chevron-down {
+        transition: transform 0.25s ease, color 0.3s ease, background-color 0.3s ease;
+        transform: rotate(0deg);
+    }
+
+    /* Arrow rotation on open */
+    .offcanvas .nav-item.open .bx-chevron-down {
+        transform: rotate(180deg);
     }
 
     .search {
@@ -136,20 +134,6 @@
     .search-btn {
         color: #294563 !important;
     }
-}
-
-@media (min-width: 768px) {
-    .copy {
-        font-size: 0.9em;
-        position: absolute;
-        right: 0;
-        top: 20px;
-        padding: 10px 0;
-    }
-
-    /* .card-item {
-        width: 20rem;
-    } */
 }
 
 @media (max-width: 767px) {
@@ -188,28 +172,8 @@
         height: auto;
     }
 
-    .footer-left,
-    .footer-right {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-start;
-        height: 85%;
-        font-size: 0.825em;
-    }
-
-    .copy {
-        font-size: 0.8em;
-        position: relative;
-        right: 0;
-        top: 0;
-        width: 100%;
-        text-align: end;
-    }
-
-    .social-icons a img {
-        width: 1.2em;
-        height: 1.2em;
+    .card .join {
+        font-size: 1.2em;
     }
 }
 
@@ -253,19 +217,9 @@
 
     .card .join {
         font-size: 1.1em;
-        margin-left: 1.6vh;
     }
 
     .my-2 {
         font-size: 1rem;
-    }
-
-    /* .social-icons a img {
-        width: 0.9em;
-        height: 0.9em;
-    } */
-
-    .flex-all-center {
-        font-size: 0.725em !important;
     }
 }
