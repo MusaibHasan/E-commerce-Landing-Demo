@@ -17,7 +17,7 @@
 /* Ensure the root element is also dark to prevent light-colored edges or flashes */
 html.dark-mode,
 body.dark-mode {
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
 }
 
 /* Prevent animations on page load */
@@ -40,7 +40,6 @@ body.dark-mode {
 body {
     background-color: var(--bg) !important;
     color: var(--text);
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     font-family: 'Lato', serif;
     overflow-x: hidden;
 }
@@ -296,6 +295,10 @@ img {
     color: #fff;
 }
 
+.btn {
+    margin-right: 5px;
+}
+
 /* The Icon Button */
 .search-btn {
     position: absolute;
@@ -469,6 +472,17 @@ main .container-fluid {
     font-family: "Lato", serif;
     /* margin-left: 2vh; */
     /* color: black; */
+    letter-spacing: 1px;
+}
+
+.lines {
+    width: 10em;
+    /* padding: 5px 10px; */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.my-2 {
+    /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
     letter-spacing: 1px;
 }
 
@@ -680,74 +694,127 @@ main .container-fluid {
     color: #e9ecef !important;
 }
 
-.bxl {
-    font-family: boxicons-brands !important;
-    font-style: normal;
-    font-weight: 400;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    display: inline-block;
-    speak-as: none;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-.social-icons a img {
-    width: 1.3em;
-    height: 1.3em;
-}
-
-.flex-all-center p {
-    margin-bottom: 0rem !important;
-}
-
-.flex-all-center a {
-    color: #d1d7e0 !important;
-}
-
-.flex-all-center a:hover {
-    text-decoration: underline !important;
-    /* color: #0d6efd !important; */
-}
-
+/* ===============================
+   FOOTER STYLES
+================================ */
 footer {
-    height: 15vh;
     background-color: #212121 !important;
-    color: #d1d7e0 !important;
-    border-top: #3d444d solid 1px;
+    border-top: #3d444d solid 1px !important;
     font-family: "Lato", serif;
-    overflow-x: hidden;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
 }
 
 .dark-mode footer {
     background-color: #172337 !important;
-    border-top: #2c323a solid 1px;
+    border-top: #2c323a solid 1px !important;
 }
 
-.copy {
+footer .container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: transparent !important;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+}
+
+.dark-mode footer .container-fluid {
+    background-color: transparent !important;
+}
+
+/* Base text colors to override Bootstrap defaults inside footer */
+footer .text-white {
+    color: #f1f2f4 !important;
+}
+
+footer .text-secondary {
     color: #999b9f !important;
-    position: absolute;
-    right: 0;
-    top: 20px;
-    width: auto;
-    text-align: end;
 }
 
-.btn {
-    margin-right: 5px;
+.footer-heading {
+    font-family: "Lato", serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    color: #999b9f !important;
 }
 
-.lines {
-    width: 10em;
-    /* padding: 5px 10px; */
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+/* Link Styling */
+.footer-link {
+    color: #d1d7e0;
+    text-decoration: none;
+    transition: color 0.2s ease, text-decoration 0.2s ease !important;
 }
 
-.my-2 {
-    /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
-    letter-spacing: 1px;
+.footer-link:hover {
+    color: #ffffff;
+    text-decoration: underline !important;
+}
+
+/* ===============================
+   NEWSLETTER INPUT 
+================================ */
+.newsletter-input {
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    color: #212529;
+    transition: all 0.3s ease;
+}
+
+.dark-mode .newsletter-input {
+    background-color: transparent;
+    /* Dark/blends with footer before click */
+    border-color: #444c58;
+    color: #f1f2f4;
+}
+
+.newsletter-input::placeholder {
+    color: #6c757d;
+    transition: color 0.3s ease;
+}
+
+.dark-mode .newsletter-input::placeholder {
+    color: #b0b8c1;
+    /* Light gray placeholder before click */
+}
+
+/* Focus State - Flips to white BG with dark text (both themes) */
+.newsletter-input:focus,
+.dark-mode .newsletter-input:focus {
+    background-color: #ffffff !important;
+    color: #212529 !important;
+    border-color: #0d6efd !important;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25) !important;
+}
+
+/* Placeholder color on focus */
+.newsletter-input:focus::placeholder,
+.dark-mode .newsletter-input:focus::placeholder {
+    color: #adb5bd !important;
+}
+
+/* Subscribe Button */
+.subscribe-btn {
+    background-color: var(--main-bg-color);
+}
+
+.subscribe-btn:hover {
+    background-color: #1a5ac6;
+}
+
+/* Icons Animation */
+.social-icons a svg,
+.payment-icons i {
+    transition: transform 0.2s ease, opacity 0.2s ease, color 0.2s ease;
+    opacity: 0.7;
+}
+
+.social-icons a:hover svg {
+    transform: scale(1.15);
+    opacity: 1;
+}
+
+.payment-icons i:hover {
+    color: #f1f2f4 !important;
+    transform: scale(1.1);
 }
 
 /* Override offcanvas animation duration */
@@ -868,7 +935,7 @@ body:not(.dark-mode) .theme-icon {
 ================================ */
 .back-to-top {
     position: fixed;
-    bottom: 30px;
+    bottom: 80px;
     right: 30px;
     width: 48px;
     height: 48px;
