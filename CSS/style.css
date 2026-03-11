@@ -709,17 +709,6 @@ footer {
     border-top: #2c323a solid 1px !important;
 }
 
-footer .container-fluid {
-    padding-left: 15px;
-    padding-right: 15px;
-    background-color: transparent !important;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
-}
-
-.dark-mode footer .container-fluid {
-    background-color: transparent !important;
-}
-
 /* Base text colors to override Bootstrap defaults inside footer */
 footer .text-white {
     color: #f1f2f4 !important;
@@ -727,6 +716,43 @@ footer .text-white {
 
 footer .text-secondary {
     color: #999b9f !important;
+}
+
+/* ===============================
+   FOOTER CSS GRID LAYOUT
+================================ */
+.footer-grid {
+    /* Default Mobile: 2 columns. Newsletter spans across both. */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.footer-newsletter {
+    grid-column: span 2;
+}
+
+/* Tablet & Small Desktop (768px to 1199px) 
+   Merged into a clean 3-column flow
+   Newsletter spans 2 columns. */
+@media (min-width: 768px) {
+    .footer-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .footer-newsletter {
+        grid-column: span 2;
+    }
+}
+
+/* Large Desktop: 6 columns total. Links get 1 each, Newsletter gets 2. */
+@media (min-width: 1200px) {
+    .footer-grid {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .footer-newsletter {
+        grid-column: span 2;
+    }
 }
 
 .footer-heading {
@@ -750,8 +776,14 @@ footer .text-secondary {
 }
 
 /* ===============================
-   NEWSLETTER INPUT 
+   NEWSLETTER STYLES 
 ================================ */
+
+/* Prevent the form from stretching too wide on large screens */
+.newsletter-form {
+    max-width: 500px;
+}
+
 .newsletter-input {
     background-color: #ffffff;
     border: 1px solid #ced4da;
