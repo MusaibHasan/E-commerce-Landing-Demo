@@ -424,22 +424,16 @@ main {
     /* min-height: calc(100vh - 12vh - 56px); */
     overflow-x: hidden;
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    background-color: #f1f2f4;
 }
 
 .dark-mode main {
-    background-color: #172337 !important;
-}
-
-main .container-fluid {
-    /* max-width: 1200px; */
-    padding-left: 15px;
-    padding-right: 15px;
-    background-color: #f1f2f4;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
-}
-
-.dark-mode main .container-fluid {
     background-color: #151b23 !important;
+}
+
+main .container {
+    /* max-width: 1200px; */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
 }
 
 .carousel-img {
@@ -709,6 +703,10 @@ footer {
     border-top: #2c323a solid 1px !important;
 }
 
+.dark-mode footer .container {
+    background-color: transparent !important;
+}
+
 /* Base text colors to override Bootstrap defaults inside footer */
 footer .text-white {
     color: #f1f2f4 !important;
@@ -784,11 +782,9 @@ footer .text-secondary {
     max-width: 500px;
 }
 
-.newsletter-input {
-    background-color: #ffffff;
-    border: 1px solid #ced4da;
-    color: #212529;
-    transition: all 0.3s ease;
+.newsletter-form .form-control {
+    font-size: 0.95rem;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
 }
 
 .dark-mode .newsletter-input {
